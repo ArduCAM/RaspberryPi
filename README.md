@@ -36,7 +36,8 @@
 ```bash
 sudo git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
-``bash cd RaspberryPi/
+```bash 
+cd RaspberryPi/
 ```
 ```bash
 sudo make 
