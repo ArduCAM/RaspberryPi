@@ -61,7 +61,6 @@ void ArduCAM_Init(unsigned char model)
       
         if (m_fmt == JPEG)
         {
-          printf("the format is JPEG\r\n");
           wrSensorRegs16_8(OV5642_JPEG_Capture_QSXGA);
           wrSensorRegs16_8(ov5642_320x240);
           wrSensorReg16_8(0x3818, 0xa8);
