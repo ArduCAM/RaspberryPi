@@ -45,6 +45,7 @@ sudo make
 ```bash
 sudo ./run_Arducam_Demo 
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/image1.png)
 
 
 
