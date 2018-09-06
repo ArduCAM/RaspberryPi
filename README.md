@@ -48,6 +48,15 @@ sudo ./run_Arducam_Demo
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/image1.png)
 ## Getting and setting the APP
 - Install the app from https://github.com/ArduCAM/RaspberryPi/blob/master/data/Arducam.apk
+- Open the app and click the setting 
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/app_image1.png)
+- Congfigure the IP Address( you can run 'sudo ifconfig' to check your IP address) The Video port is 2002.
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/app_image2.png)
+- Click the begin button to show the image the camera transfers.
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/app_image3.png)
+
+
+
 
 
 
