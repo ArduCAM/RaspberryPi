@@ -40,15 +40,16 @@ int main(int argc, char *argv[])
   pthread_t _readData;//_sendData;
   pioInit();
   ArduCAM_CS_init( CAM_CS1, -1, -1, -1 );   // init the cs
-  // ArduCAM_CS_init( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // init the cs
+  // ArduCAM_CS_init( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // Support for the 4 cameras
 
   sccb_bus_init();
-  spiInit(4000000, 0); //8MHZ
-  //Arducam_bus_detect( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // detect the SPI bus
-  Arducam_bus_detect( CAM_CS1, -1, -1, -1 );
+  spiInit(4000000, 0); //4MHZ   support 1-8MHZ
+  Arducam_bus_detect( CAM_CS1, -1, -1, -1 );    // detect the SPI bus
+  //Arducam_bus_detect( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );    // Support for the 4 cameras
+ 
 
   resetFirmware( CAM_CS1, -1, -1, -1 );  //reset the firmware
-  // resetFirmware( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4);  //reset the firmware
+  // resetFirmware( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4);  //reset the firmware for the 4 cameras
   printf("The sensor module is %d\r\n", sensor_model);
   ArduCAM_Init(sensor_model);
   signal(SIGINT, INThandler);
@@ -118,8 +119,6 @@ int main(int argc, char *argv[])
 }
 
 
-
-
 void *readDataThread(void *arg) {
   while (1) {
     if (start_read_data == 1) {
@@ -133,6 +132,8 @@ void *readDataThread(void *arg) {
         start_read_data = 0;
         break;
       }
+      
+      // For multi cameras
 /*
       singleCapture(CAM_CS2);
       sendbuf_cam2 = readbuf;
@@ -164,19 +165,11 @@ void *readDataThread(void *arg) {
         start_read_data = 0;
         break;
       }
-
 */
-      // start_read_data = 0;
-
     }
   }
   return 0;
 }
-
-
-//void *sendDataThread(void *arg) {
- // ;
-//}
 
 
 void  INThandler(int sig)
