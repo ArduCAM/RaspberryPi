@@ -46,6 +46,10 @@ sudo make
 sudo ./run_Arducam_Demo 
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/image1.png)
+## Getting and setting the APP
+- Install the app from https://github.com/ArduCAM/RaspberryPi/blob/master/data/Arducam.apk
+
+
 
 
 
