@@ -4,6 +4,7 @@
 - Support for Arducam Mini 2MP/2MP Plus/5MP/5MP Plus
 - Support for 4 cameras work together
 - Support for transering image data through the wifi.
+- It will continue to be updated ...
 ## Pins definition (BCM)
 ```Bash
 //ArduCAM CS pins
