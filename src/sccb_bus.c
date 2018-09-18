@@ -13,7 +13,7 @@
 #define SCCB_SID_STATE	  digitalRead(sda_port) 
 
 
-unsigned char I2C_TIM  = 2;
+unsigned char I2C_TIM  = 30;
 void sccb_bus_init(void)
 {
 	pinMode(sda_port, OUTPUT);
