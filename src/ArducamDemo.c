@@ -25,9 +25,9 @@ unsigned char start_read_data = 0;
 unsigned char read_data_OK = 0;
 
 unsigned int length_cam1;
-unsigned int length_cam2;
-unsigned int length_cam3;
-unsigned int length_cam4;
+//unsigned int length_cam2;
+//unsigned int length_cam3;
+//unsigned int length_cam4;
 
 
 
@@ -40,17 +40,15 @@ int main(int argc, char *argv[])
   pthread_t _readData;//_sendData;
   pioInit();
   ArduCAM_CS_init( CAM_CS1, -1, -1, -1 );   // init the cs
-  // ArduCAM_CS_init( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // Support for the 4 cameras
+  // ArduCAM_CS_init( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // init the cs
 
   sccb_bus_init();
-  spiInit(4000000, 0); //4MHZ   support 1-8MHZ
-  Arducam_bus_detect( CAM_CS1, -1, -1, -1 );    // detect the SPI bus
-  //Arducam_bus_detect( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );    // Support for the 4 cameras
- 
+  spiInit(4000000, 0); //8MHZ
+  //Arducam_bus_detect( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4 );   // detect the SPI bus
+  Arducam_bus_detect( CAM_CS1, -1, -1, -1 );
 
   resetFirmware( CAM_CS1, -1, -1, -1 );  //reset the firmware
-  // resetFirmware( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4);  //reset the firmware for the 4 cameras
-  printf("The sensor module is %d\r\n", sensor_model);
+  // resetFirmware( CAM_CS1, CAM_CS2, CAM_CS3, CAM_CS4);  //reset the firmware
   ArduCAM_Init(sensor_model);
   signal(SIGINT, INThandler);
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -87,9 +85,13 @@ int main(int argc, char *argv[])
     go in sleep mode and will wait for the incoming connection
   */
   while (1) {
+    read_data_OK = 0;
+    start_read_data = 0;
     listen(sockfd, 5);
     clilen = sizeof(cli_addr);
+
     printf("Waitting connection...\r\n");
+
     /* Accept actual connection from the client */
     newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, (void *) &clilen);
     if (newsockfd < 0) {
@@ -119,10 +121,13 @@ int main(int argc, char *argv[])
 }
 
 
+
+
 void *readDataThread(void *arg) {
   while (1) {
     if (start_read_data == 1) {
       singleCapture(CAM_CS1);
+	  
       sendbuf_cam1 = readbuf;
       length_cam1 = length;
       if (sockfd) {
@@ -132,8 +137,6 @@ void *readDataThread(void *arg) {
         start_read_data = 0;
         break;
       }
-      
-      // For multi cameras
 /*
       singleCapture(CAM_CS2);
       sendbuf_cam2 = readbuf;
@@ -165,11 +168,19 @@ void *readDataThread(void *arg) {
         start_read_data = 0;
         break;
       }
+
 */
+      // start_read_data = 0;
+
     }
   }
   return 0;
 }
+
+
+//void *sendDataThread(void *arg) {
+ // ;
+//}
 
 
 void  INThandler(int sig)
@@ -180,11 +191,12 @@ void  INThandler(int sig)
          "Do you really want to quit? [y/n] ");
   c = getchar();
   if (c == 'y' || c == 'Y') {
+  	
     if (newsockfd < 0) {
       close(newsockfd);
       close(sockfd);
     }
-
+	start_read_data = 0;
     printf("Bye Arducam.\n");
     printf("If you want to resart Arducam, just run \"sudo ./run_Arducam_Demo\"\r\n");
     exit(0);
