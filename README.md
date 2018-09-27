@@ -14,6 +14,7 @@ ince the old multi-camera adapter board doesn’t work with Raspberry Pi 8MP IMX
 - http://www.arducam.com/arducam-v2-1-multi-camera-adapter-board-raspberry-pi-8mp-camera-imx219/
 
 ## Motorized_Focus_Camera
+- The standard pi camera is fixed focus lens, some of them are glued which can not be adjust by users, and some of them are not glued which can be adjust the lens focus manually. But in certian circumstance, you want to programmably control the focus distance remotely where the device can not be reached. The ArduCAM team now designed motorized control focus 5MP and 8MP camera module for Raspberry Pi series boards to address this problem.
 http://www.arducam.com/programmable-motorized-focus-camera-raspberry-pi/
 ```Bash
 //Hareware Connection
