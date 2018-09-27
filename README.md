@@ -10,3 +10,11 @@
 - This adapter bard support 5MP and 8MP
 - http://www.arducam.com/arducam-v2-1-multi-camera-adapter-board-raspberry-pi-8mp-camera-imx219/
 
+## Motorized_Focus_Camera
+ Hareware Connection
+```Bash
+//Hareware Connection
+Focus Motor     PI
+ SDA            SDA.1 ( BCM：2 )
+ SCL            SCL.1 ( BCM: 3 )
+```
