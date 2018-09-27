@@ -11,7 +11,6 @@
 - http://www.arducam.com/arducam-v2-1-multi-camera-adapter-board-raspberry-pi-8mp-camera-imx219/
 
 ## Motorized_Focus_Camera
- Hareware Connection
 ```Bash
 //Hareware Connection
 Focus Motor     PI
