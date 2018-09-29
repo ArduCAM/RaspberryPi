@@ -22,3 +22,4 @@ Focus Motor     PI
  SDA            SDA.1 ( BCM：2 )
  SCL            SCL.1 ( BCM: 3 )
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Motorized_Focus_Camera.jpg)
