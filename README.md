@@ -19,7 +19,7 @@ http://www.arducam.com/programmable-motorized-focus-camera-raspberry-pi/
 ```Bash
 - sudo raspi-config
 - Choose Interfacing Options
-- Enable hte Camera and I2C 
+- Enable the Camera and I2C 
 ```
 ```Bash
 //Hareware Connection
