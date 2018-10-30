@@ -28,3 +28,11 @@ Focus Motor     PI
  SCL            SCL.1 ( BCM: 3 )
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Motorized_Focus_Camera.jpg)
+### Demos Function
+ Arducam has release two demos Motorized_Focus_Camera_Preview.py and Motorized_Focus_Camera_Snapshot.py
+### Motorized_Focus_Camera_Preview.py
+ - This demo support focusing in preview mode, You can see the focus visually
+ - Run this demo is very easy , just input the "sudo python Motorized_Focus_Camera_Preview.py" in the terminal.
+ ### Motorized_Focus_Camera_snapshot.py
+ - This demo support focusing and save the image to the local filesystem. You can save the image after each focus.
+ - Run this demo is very easy , just input the "sudo python Motorized_Focus_Camera_snapshot.py" in the terminal.
