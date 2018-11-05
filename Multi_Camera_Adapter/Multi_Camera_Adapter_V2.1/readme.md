@@ -12,3 +12,5 @@ sudo python 4cam_cv2.py
 ## FAQ
 - from PyQt5 import QtCore, QtGui, QtWidgets
   ImportError: No module named PyQt5
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Camera_Adapter_V2.1/error1.png)
+
