@@ -10,6 +10,6 @@
  - Single focus by keyboard up and down
  - Run this demo is very easy , just input the "sudo python Motorized_Focus_Camera_snapshot.py" in the terminal.
 ### Autofocus.py 
- - Before running this demo, you have to install Python Dependency libraries£º
+ - Before running this demo, you have to install Python Dependency libraries.
  - sudo apt-get install python-opencv 
  - Then run the demo by inputing the "sudo python Autofocus.py" in the terminal.
