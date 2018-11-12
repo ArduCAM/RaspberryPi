@@ -76,8 +76,8 @@ if __name__ == "__main__":
     #Adjust focus to the best
 	focusing(max_index)
 	time.sleep(1)
-	#set camera resolution to 1920x1080
-	camera.resolution = (1920,1080)
+	#set camera resolution to 2592x1944
+	camera.resolution = (2592,1944)
 	#save image to file.
 	camera.capture("test.jpg")
 	print("max index = %d,max value = %lf" % (max_index,max_value))
