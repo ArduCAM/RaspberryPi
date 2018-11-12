@@ -78,9 +78,11 @@ if __name__ == "__main__":
 	time.sleep(1)
 	#set camera resolution to 1920x1080
 	camera.resolution = (1920,1080)
+	#save image to file.
+	camera.capture("test.jpg")
 	print("max index = %d,max value = %lf" % (max_index,max_value))
-	while True:
-		time.sleep(1)
+	#while True:
+	#	time.sleep(1)
 		
 	camera.stop_preview()
 	camera.close()
