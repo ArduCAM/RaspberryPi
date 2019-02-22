@@ -10,6 +10,7 @@
 
 ## Configuration
 - Configure the i2c1 
+
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_1.png)
 
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_2.png)
