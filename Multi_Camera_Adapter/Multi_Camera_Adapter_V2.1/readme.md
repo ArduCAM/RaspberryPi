@@ -8,6 +8,12 @@
   sudo apt-get install python-opencv
   ```
 
+## Configuration
+- Configure the i2c1 
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_1.png)
+
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_2.png)
+
 - Run the below command to init the camera
 ```Bash
 sudo ./init_camera.sh
