@@ -19,6 +19,8 @@
 ```Bash
 sudo ./init_camera.sh
 ```
+-If anything is normal, you will see below message
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/check_msg.png)
 
 - Run the below command to start the demo
 ```Bash
