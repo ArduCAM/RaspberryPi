@@ -15,7 +15,7 @@
 
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_2.png)
 
-- Run the below command to init the camera
+- Run the below command to init and check the camera
 ```Bash
 sudo ./init_camera.sh
 ```
