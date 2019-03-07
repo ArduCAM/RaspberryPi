@@ -26,4 +26,6 @@ sudo ./init_camera.sh
 ```Bash
 sudo python 4cam_cv2.py
 ```
+- Operation video demo link
+ https://www.youtube.com/watch?v=HxHKQS1weGc&feature=youtu.be
   
