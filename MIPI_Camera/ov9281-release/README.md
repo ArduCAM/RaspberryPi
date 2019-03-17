@@ -1,4 +1,4 @@
-# OV9281 13MP MIPI Camera User Guide
+# OV9281 1MP Global Shutter MIPI Camera User Guide
 
 ## 1. Driver Installation 
 

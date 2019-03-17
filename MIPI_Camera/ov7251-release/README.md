@@ -1,4 +1,4 @@
-# OV7251 13MP MIPI Camera User Guide
+# OV7251 0.3MP Global Shutter MIPI Camera User Guide
 
 ## 1. Driver Installation 
 
