@@ -135,7 +135,7 @@ The VLC player uses Raspberry Pi's CPU do the video rendering, which limits the 
 You can only run lower resolution with VLC player, it will stuck in highest resolution.
 We provide a python script to help you to capture 13MP full resolution image with our camera.
 
-First you need openCV running enviroment
+First you need openCV running environment
 
 `sudo apt-get update`
 
