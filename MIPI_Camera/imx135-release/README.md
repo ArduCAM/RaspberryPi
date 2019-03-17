@@ -1,6 +1,6 @@
 # IMX135 13MP MIPI Camera User Guide
 
-##1. Driver Installation 
+## 1. Driver Installation 
 
 ###	Important Note
 
@@ -63,7 +63,7 @@ Install the kernel driver using the following command
 
 After this step, you should find a new video device like /dev/video0.
 
-##2.	VLC Player Demo
+## 2.	VLC Player Demo
 
 ###	Download the VLC player
 
@@ -79,43 +79,43 @@ Run the VLC player by the following command
 
 Arducam IMX135 camera driver supports a list of V4L2 control functions, and you can check the supported functions using the following commands:
 
-####1. Check supported resolution
+#### 1. Check supported resolution
 
 `v4l2-ctl --list-formats-ext`
 
-####2. Check the supported controls
+#### 2. Check the supported controls
 
 `v4l2-ctl -l`
 
-####3. Manual Exposure Setting
+#### 3. Manual Exposure Setting
 
 `v4l2-ctl -c exposure=0x50`
 
-####4. Manual Global Gain Setting
+#### 4. Manual Global Gain Setting
 
 `v4l2-ctl -c gain=0x02`
 
-####5. Manual Red Channel Gain Setting
+#### 5. Manual Red Channel Gain Setting
 
 `v4l2-ctl -c red_balance=0x02`
 
-####6. Manual Blue Channel Gain Setting
+#### 6. Manual Blue Channel Gain Setting
 
 `v4l2-ctl -c blue_balance=0x02`
 
-####7. Mirror
+#### 7. Mirror
 
 `v4l2-ctl -c horizontal_flip=1`
 
-####8. Flip
+#### 8. Flip
 
 `v4l2-ctl -c vertical_flip=1`
 
-####9. Manual Focus Setting
+#### 9. Manual Focus Setting
 
 `v4l2-ctl -c focus_absolute=0x02`
 
-####10. Sensor Register Access
+#### 10. Sensor Register Access
 
 First, you have to set the address of the register to be accessed, for example, 0x0202 in our case
 
@@ -129,7 +129,7 @@ Write the value to 0x0202 register
 
 `v4l2-ctl -c register_val=0x01`
 
-##3.    Python 13MP Image Capture Demo
+## 3.    Python 13MP Image Capture Demo
 
 The VLC player uses Raspberry Pi's CPU do the video rendering, which limits the real time preview performance.
 You can only run lower resolution with VLC player, it will stuck in highest resolution.
