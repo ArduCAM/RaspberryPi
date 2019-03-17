@@ -103,11 +103,7 @@ Arducam ov9281 camera driver supports a list of V4L2 control functions, and you 
 
 `v4l2-ctl -c vertical_flip=1`
 
-#### 7. Manual Focus Setting
-
-`v4l2-ctl -c focus_absolute=0x02`
-
-#### 8. Sensor Register Access
+#### 7. Sensor Register Access
 
 First, you have to set the address of the register to be accessed, for example, 0x0202 in our case
 

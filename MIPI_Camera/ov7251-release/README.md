@@ -95,27 +95,15 @@ Arducam ov7251 camera driver supports a list of V4L2 control functions, and you 
 
 `v4l2-ctl -c gain=0x02`
 
-#### 5. Manual Red Channel Gain Setting
-
-`v4l2-ctl -c red_balance=0x02`
-
-#### 6. Manual Blue Channel Gain Setting
-
-`v4l2-ctl -c blue_balance=0x02`
-
-#### 7. Mirror
+#### 5. Mirror
 
 `v4l2-ctl -c horizontal_flip=1`
 
-#### 8. Flip
+#### 6. Flip
 
 `v4l2-ctl -c vertical_flip=1`
 
-#### 9. Manual Focus Setting
-
-`v4l2-ctl -c focus_absolute=0x02`
-
-#### 10. Sensor Register Access
+#### 7. Sensor Register Access
 
 First, you have to set the address of the register to be accessed, for example, 0x0202 in our case
 
