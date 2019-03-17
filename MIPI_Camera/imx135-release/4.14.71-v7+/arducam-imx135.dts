@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+/ {
+       compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+       fragment@0 {
+          target = <&i2c0>;
+          __overlay__ {
+                #address-cells = <1>;
+                #size-cells = <0>;
+                arducam-imx135@10 {
+                        compatible = "arducam,imx135";
+                        reg = <0x10>;
+                        #address-cells = <2>;
+                        #size-cells = <1>;
+                };        
+          };
+       };
+       
+    };
+
