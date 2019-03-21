@@ -145,6 +145,10 @@ Then add package for V4L2 support for Python
 
 `sudo pip install v4l2`
 
+Go to the Tools folder to run the python script
+
+`python snapshot.py`
+
 
 
 
