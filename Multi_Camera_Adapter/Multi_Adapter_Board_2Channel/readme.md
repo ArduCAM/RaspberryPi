@@ -8,7 +8,7 @@ $ sudo reboot
 
 ##  C++ version code
 
-This code support Both cameras display at the same time
+This demo supports Both cameras display at the same time
 
 * Install the opencv library
 ```Bash
@@ -23,7 +23,7 @@ sudo make
 sudo ./pi_zero_cam
 ```
 ### Runing Demo
-![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Camera_Shield_V2.1.png)
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/demo.png)
 
 ## Shell version
 
