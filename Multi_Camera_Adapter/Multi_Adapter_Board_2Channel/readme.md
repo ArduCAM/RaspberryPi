@@ -4,6 +4,8 @@ You have to disable the automatic management of camera led in `/boot/config.txt`
 $ sudo sh -c 'echo "disable_camera_led=1" >> /boot/config.txt' 
 $ sudo reboot
 ```
+# Hardware Connection
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/HardwareConnection.png)
 # Quickly start
 ## Download the Raspberrypi library
 ```bash
