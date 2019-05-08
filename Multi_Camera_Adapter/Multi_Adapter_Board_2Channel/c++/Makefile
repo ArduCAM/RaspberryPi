@@ -2,7 +2,7 @@ CXX         = g++
 CXXFLAGS    = `pkg-config --cflags --libs opencv`  #sudo apt-get install libopencv-dev
 LIBS		= -lwiringPi
 ODIR		= obj
-_OBJ        = pi_zero_cam.o
+_OBJ        = pi_cam.o
 OBJ 		= $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp
