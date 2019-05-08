@@ -1,44 +1,111 @@
 
-/*
-* Please enable your own platform, 
-* the default is Pi zero w platform.
-*/
-
-//#define PI_3B_3B_PLUS
-//#define PI_ZERO
-#define PI_ZERO_W
-
-
-
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
-//#include <sys/time.h>
 #include <wiringPi.h>
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
+//	define the support board version 
+
 using namespace cv;
 using namespace std;
 
+#define PI_ZERO    0
+#define PI_ZERO_W  1
+
+int boardVersion = PI_ZERO_W;
 typedef struct timeval TIME;
 #define GPIO_NUM 3
 int digitalNum[GPIO_NUM];
 int status[GPIO_NUM];
 int lastStatus[GPIO_NUM];
-void init(){
-	digitalNum[0] = 7;
-	digitalNum[1] = 0;
-	digitalNum[2] = 1;
-
-    wiringPiSetup() ;
-    //   pinMode (0, OUTPUT) ;
-	for(int i = 0 ; i < GPIO_NUM ; ++i){
-		pinMode (digitalNum[i], OUTPUT) ;
-		// pullUpDnControl (digitalNum[i], PUD_UP);
-	}
-
+//Remove the header spack
+char *rtrim(char *str)
+{
+  if (str == NULL || *str == '\0')
+  {
+    return str;
+  }
+ 
+  int len = strlen(str);
+  char *p = str + len - 1;
+  while (p >= str  && isspace(*p))
+  {
+    *p = '\0';
+    --p;
+  }
+ 
+  return str;
 }
+ 
+//Remove the end space
+char *ltrim(char *str)
+{
+  if (str == NULL || *str == '\0')
+  {
+    return str;
+  }
+ 
+  int len = 0;
+  char *p = str;
+  while (*p != '\0' && isspace(*p))
+  {
+    ++p;
+    ++len;
+  }
+ 
+  memmove(str, p, strlen(str) - len + 1);
+ 
+  return str;
+}
+ 
+//Remove the header and end space
+char *trim(char *str)
+{
+  str = rtrim(str);
+  str = ltrim(str);
+  
+  return str;
+}
+int Judge_version(){
+    FILE *fstream=NULL;     
+    char buff[1024];   
+    memset(buff,0,sizeof(buff));   
+    if(NULL==(fstream=popen("cat /proc/cpuinfo | grep Revision | awk '{print substr($NF,length($NF)-5,6)}'","r")))     
+    {    
+      //  log_error("execute command failed: %s",strerror(errno));     
+        return -1;     
+    }
+    if (NULL != fgets(buff, sizeof(buff), fstream))
+    {
+        if(strlen(buff) <= 0)
+            return -1;
+        char *temp = trim(buff);  
+        if (!strcmp(temp, "9000c1")){
+            cout << "The board is Pi zero w"<< endl;
+        	boardVersion =PI_ZERO_W;
+        }else{
+            cout << "The board is Pi zero"<< endl;
+        	boardVersion = PI_ZERO;
+        }
+    }
+    else
+    {
+        pclose(fstream);
+        return -1;
+    }
+    pclose(fstream);   
+
+    
+    return -1;    
+} 
+void init(){
+   Judge_version();
+   system("sudo modprobe bcm2835_v4l2"); 
+   
+   }
 int width = 320;
 int height = 240;
 void mergeImage(Mat &dst,Mat &src,int index){
@@ -47,10 +114,8 @@ void mergeImage(Mat &dst,Mat &src,int index){
     int rows = height;
 	
     if(dst.empty()){
-        dst.create(rows * 2 + offset * 3,cols * 2 + offset * 3,CV_8UC3);
+        dst.create(rows * 1 + offset * 3,cols * 2 + offset * 3,CV_8UC3);
         dst.setTo(Scalar(0xE5,0xE5,0xE5));
-        	// #6495ED
-
     }
     // resize(src, src, Size(cols, rows));
 #ifdef DEBUG_OUTPUT
@@ -61,8 +126,7 @@ void mergeImage(Mat &dst,Mat &src,int index){
     cout << "index: " << index << endl;
     printf("args: %d %d %d %d\n",(index % 2) * cols,(index / 2)*rows,width,height);
 #endif
-    // src.copyTo(dst(Rect((index % 2) * cols + (index % 2) * offset, (index / 2) * rows + (index / 2) * offset, width, height)));
-    src.copyTo(dst(Rect((index % 2) * cols + (index % 2 + 1) * offset, (index / 2) * rows + (index / 2 + 1) * offset, width, height)));
+	src.copyTo(dst(Rect((index % 2) * cols + (index % 2 + 1) * offset, (index / 2) * rows + (index / 2 + 1) * offset, width, height)));
 }
 
 TIME currentTimeMillis(){
@@ -70,7 +134,6 @@ TIME currentTimeMillis(){
     gettimeofday( &start, NULL );
     return start;
 }
-
 int brightness = 50;               // min=0   max=100  step=1
 int contrast = 0;                  // min=-100  max=100  step=1
 int saturation = 0;                // min=-100  max=100  step=1
@@ -82,19 +145,14 @@ void sendCommand(){
     char command[100];
     sprintf(command,"v4l2-ctl -d 0 -c brightness=%d",brightness);
     system(command);
-
     sprintf(command,"v4l2-ctl -d 0 -c contrast=%d",contrast);
     system(command);
-
     sprintf(command,"v4l2-ctl -d 0 -c saturation=%d",saturation);
     system(command);
-
     sprintf(command,"v4l2-ctl -d 0 -c rotate=%d",_rotate);
     system(command);
-
     sprintf(command,"v4l2-ctl -d 0 -c auto_exposure=%d",auto_exposure);
     system(command);
-    
     sprintf(command,"v4l2-ctl -d 0 -c exposure_time_absolute=%d",exposure_time_absolute);
     system(command);
 }
@@ -105,24 +163,11 @@ int initCamera(VideoCapture &cap){
         printf("Please check your camera connection,then try again.\n");
         exit(0);
     }
-
-#if defined (PI_3B_3B_PLUS)
-    system("echo 134 > /sys/class/gpio/export");
-    system("echo out > /sys/class/gpio/gpio134/direction");
-#elif defined (PI_ZERO)
-    system("echo 32 > /sys/class/gpio/export");
-    system("echo out > /sys/class/gpio/gpio32/direction");
-#else
-    system("echo 40 > /sys/class/gpio/export");
-    system("echo out > /sys/class/gpio/gpio40/direction");
-#endif
     // open the default camera using default API
     cap.open(0);
-    // OR advance usage: select any API backend
     int deviceID = 0;        // 0 = open default camera
     int apiID = 0;
-    // int apiID = cv::CAP_ANY; // 0 = autodetect default API
-                             // open selected camera using selected API
+
     cap.open(deviceID + apiID);
     // check if we succeeded
     if (!cap.isOpened())
@@ -130,30 +175,20 @@ int initCamera(VideoCapture &cap){
         cerr << "ERROR! Unable to open camera\n";
         return -1;
     }
+   if(boardVersion == PI_ZERO_W)
+    	system("gpio -g write 40 1");
+   else
+    	system("gpio -g write 32 1");	
     sendCommand();
     cap.grab();
-
-    #if defined (PI_3B_3B+)
-        system("echo 1 > /sys/class/gpio/gpio134/value");
-    #elif defined (PI_ZERO)
-        system("echo 1 > /sys/class/gpio/gpio32/value");
-    #else
-        system("echo 1 > /sys/class/gpio/gpio40/value");
-    #endif
-   
+    
+    if(boardVersion == PI_ZERO_W)
+        system("gpio -g write 40 0");
+   else
+        system("gpio -g write 32 0"); 
     sendCommand();
     cap.grab();
     sleep(1);
-    #if defined (PI_3B_3B+)
-           system("echo 0 > /sys/class/gpio/gpio134/value");
-    #elif defined (PI_ZERO)
-           system("echo 0 > /sys/class/gpio/gpio32/value");
-    #else
-           system("echo 0 > /sys/class/gpio/gpio40/value");
-    #endif
-
-    sendCommand();
-    cap.grab();
 }
 
 int main(int, char **)
@@ -188,25 +223,19 @@ int main(int, char **)
         
         switch(flag){
         case 1:     //camera a
-            #if defined (PI_3B_3B+)
-                system("echo 1 > /sys/class/gpio/gpio134/value");
-            #elif defined (PI_ZERO)
-                system("echo 1 > /sys/class/gpio/gpio32/value");
-            #else
-                system("echo 1 > /sys/class/gpio/gpio40/value");
-            #endif
-            break;
+          if(boardVersion == PI_ZERO_W)
+        	system("gpio -g write 40 0");
+   	  else
+        	system("gpio -g write 32 0"); 
+           break;
         case 2:     //camera b
-            #if defined (PI_3B_3B+)
-                system("echo 0 > /sys/class/gpio/gpio134/value");
-            #elif defined (PI_ZERO)
-                system("echo 0 > /sys/class/gpio/gpio32/value");
-            #else
-                system("echo 0 > /sys/class/gpio/gpio40/value");
-            #endif
-            break;
+           if(boardVersion == PI_ZERO_W)
+        	system("gpio -g write 40 1");
+   	   else
+        	system("gpio -g write 32 1"); 
+           break;
         }
-        
+       
         ++totalFrame;
         if(time(NULL) - begin_time >= 1){
             printf("fps %d\n",totalFrame);
