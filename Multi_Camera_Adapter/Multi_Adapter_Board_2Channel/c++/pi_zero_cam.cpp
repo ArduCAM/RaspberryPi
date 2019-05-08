@@ -1,4 +1,3 @@
-
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <fstream>
@@ -7,6 +6,18 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+
+#define RPI_FIRMWARE_DEV "/dev/vcio"
+#define IOCTL_RPI_FIRMWARE_PROPERTY _IOWR(100, 0, char*)
+#define RPI_FIRMWARE_STATUS_REQUEST 0
+#define RPI_FIRMWARE_STATUS_SUCCESS 0x80000000
+#define RPI_FIRMWARE_STATUS_ERROR   0x80000001
+#define RPI_FIRMWARE_PROPERTY_END   0
+#define RPI_FIRMWARE_SET_GPIO_STATE 0x00038041
+
+
 //	define the support board version 
 
 using namespace cv;
@@ -14,6 +25,8 @@ using namespace std;
 
 #define PI_ZERO    0
 #define PI_ZERO_W  1
+#define PI_3B_3B_PLUS 2
+
 
 int boardVersion = PI_ZERO_W;
 typedef struct timeval TIME;
@@ -21,6 +34,38 @@ typedef struct timeval TIME;
 int digitalNum[GPIO_NUM];
 int status[GPIO_NUM];
 int lastStatus[GPIO_NUM];
+int write_virtual_gpio(int gpio,int value){
+    int fd;
+
+  fd = open(RPI_FIRMWARE_DEV, O_NONBLOCK);
+  if (fd == -1) {
+    //log_error("open firware dev fail.\n");
+    return -1;
+  }
+
+    uint32_t buf[] = { 
+        8 * sizeof(uint32_t), 
+        RPI_FIRMWARE_STATUS_REQUEST, 
+        RPI_FIRMWARE_SET_GPIO_STATE, 
+        2 * sizeof(int), 
+        0, 
+        gpio,
+        value ? 1 : 0,
+        RPI_FIRMWARE_PROPERTY_END
+    };
+    int ret = ioctl(fd, IOCTL_RPI_FIRMWARE_PROPERTY, buf);
+    if(ret == -1){
+        //log_error("ioctl fail\n");
+        return -1;
+    }
+    if(buf[1] != RPI_FIRMWARE_STATUS_SUCCESS){
+      //  log_error("NOT RPI_FIRMWARE_STATUS_SUCCESS\n");
+        return -1;
+    }
+    return 0;
+}
+
+
 //Remove the header spack
 char *rtrim(char *str)
 {
@@ -83,10 +128,15 @@ int Judge_version(){
         if(strlen(buff) <= 0)
             return -1;
         char *temp = trim(buff);  
-        if (!strcmp(temp, "9000c1")){
+        cout << temp<<endl;
+        if (!strcmp(temp, "9000c1") ){
             cout << "The board is Pi zero w"<< endl;
         	boardVersion =PI_ZERO_W;
-        }else{
+        }else if(!strcmp(temp, "a02082") || !strcmp(temp, "a22082") || !strcmp(temp, "a020d3")){
+            cout << "The board is Pi 3B/B+"<< endl;
+            boardVersion =PI_3B_3B_PLUS; 
+        }
+            else{
             cout << "The board is Pi zero"<< endl;
         	boardVersion = PI_ZERO;
         }
@@ -177,13 +227,22 @@ int initCamera(VideoCapture &cap){
     }
    if(boardVersion == PI_ZERO_W)
     	system("gpio -g write 40 1");
-   else
+   else if(boardVersion == PI_3B_3B_PLUS){
+       // system("./rpi3-gpiovirtbuf s 134 1");
+       write_virtual_gpio(134, 1);
+
+   }else
     	system("gpio -g write 32 1");	
     sendCommand();
     cap.grab();
     
     if(boardVersion == PI_ZERO_W)
         system("gpio -g write 40 0");
+    else if(boardVersion == PI_3B_3B_PLUS){
+       //system("./rpi3-gpiovirtbuf s 134 0");
+       write_virtual_gpio(134, 0);
+
+   }
    else
         system("gpio -g write 32 0"); 
     sendCommand();
@@ -225,13 +284,19 @@ int main(int, char **)
         case 1:     //camera a
           if(boardVersion == PI_ZERO_W)
         	system("gpio -g write 40 0");
-   	  else
+          else if(boardVersion == PI_3B_3B_PLUS)
+            write_virtual_gpio(134, 0);
+           // system("./rpi3-gpiovirtbuf s 134 0");
+   	      else
         	system("gpio -g write 32 0"); 
            break;
         case 2:     //camera b
            if(boardVersion == PI_ZERO_W)
         	system("gpio -g write 40 1");
-   	   else
+           else if(boardVersion == PI_3B_3B_PLUS)
+            write_virtual_gpio(134, 1);
+           // system("./rpi3-gpiovirtbuf s 134 1");
+   	       else
         	system("gpio -g write 32 1"); 
            break;
         }
