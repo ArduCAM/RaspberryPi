@@ -18,9 +18,9 @@ This shell script is used to test each camera
 ```bash
 cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/shell
 
-sudo chmod +x pi_zero_cam.sh
+sudo chmod +x pi_cam.sh
 
-sudo ./pi_zero_cam.sh
+sudo ./pi_cam.sh
 ```
 * Running Demo
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/shell_demo.png)
@@ -39,7 +39,7 @@ cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/c++/
 
 sudo make
 
-sudo ./pi_zero_cam
+sudo ./pi_cam
 ```
 * Runing Demo
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/demo.png)
