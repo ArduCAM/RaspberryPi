@@ -8,12 +8,14 @@ But the drawback is the frame rate and resolution will be fairly low, may be use
 Note that this version doesn't support 8MP Pi camera borad. And it also can be used for other Raspberry pi boards with minor software modifications.
 
 # Prerequisites
-You have to disable the automatic management of camera led in `/boot/config.txt`.  
+Because the camera switching is done through the camera led pin.
+You have to disable the automatic management of camera led in `/boot/config.txt`.  The following command help you  disable the led control from the GPU firmware.
 ```bash
 $ sudo sh -c 'echo "disable_camera_led=1" >> /boot/config.txt' 
 $ sudo reboot
 ```
 # Hardware Connection
+Connect the multi-camera adapter board to Pi ZERO through 15-22pin flex cable. And connect two 5MP pi cameras to the Camera A and Camera B ports as the following photo shows.
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/HardwareConnection.png)
 # Quickly start
 ## Download the Raspberrypi library
@@ -24,7 +26,7 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
 
 ## Shell version
 
-This shell script is used to test each camera 
+This shell script demonstrates how to take two still images from two cameras in turn.
 * Run the script
 ```bash
 cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/shell
@@ -38,7 +40,7 @@ sudo ./pi_cam.sh
 
 ## C++ version code
 
-This demo supports Both cameras display at the same time
+This example demonstrates to run two cameras and make them looks at the same time
 
 * Install the opencv library
 ```Bash
