@@ -127,11 +127,13 @@ void ArduCAM_CS_init(int CS1, int CS2, int CS3, int CS4)
 
 void CS_HIGH(int CS)
 {
+	delay_us(1);
  	digitalWrite(CS, HIGH);					
 }
 
 void CS_LOW(int CS)
 {
+	delay_us(1);
  	digitalWrite(CS, LOW);						    
 }
 
