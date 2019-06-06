@@ -5,9 +5,9 @@
 - Support for 4 cameras work together
 - Support image preview through hdmi monitor.
 ## Hardware Setup
-![Alt text]https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/RPI_SPI_1.jpg)
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/RPI_SPI_1.jpg)
 
-![Alt text]https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/RPI_SPI_2.jpg)
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/RPI_SPI_2.jpg)
 ## Pins definition (BCM)
 ```Bash
 //ArduCAM CS pins
