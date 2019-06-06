@@ -38,7 +38,7 @@
 sudo git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
 ```bash 
-cd RaspberryPi/
+cd RaspberryPi/SPI_Camera
 ```
 ```bash
 sudo make 
