@@ -39,23 +39,28 @@
 ## Quickly start
 - Install the open cv library 
 ```bash
-sudo git clone https://github.com/ArduCAM/RaspberryPi.git
+sudo apt-get install libopencv-dev
 ```
 - Install the RaspberryPi library
 ```bash
 sudo git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/git_clone.png)
+
 - Compile and run the test demo
-- [Nitice: Before running the test demo, you should connect your hdmi monitor, if not, the opencv will can't find the display device.]
+- [Notice: Before running the test demo, you should connect your hdmi monitor, if not, the opencv will can't find the display device.]
 ```bash 
 cd RaspberryPi/Multi_Camera_Adapter_SPI_Camera
 ```
 ```bash
 sudo make 
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/Compile.png)
+
 ```bash
 sudo ./run_Arducam_Demo 
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter_SPI_Camera/data/rundemo.png)
 
 
 
