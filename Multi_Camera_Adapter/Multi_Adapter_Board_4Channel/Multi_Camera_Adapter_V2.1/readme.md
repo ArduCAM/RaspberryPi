@@ -10,13 +10,21 @@
 
 ## Configuration
 - Enable the camera 
-
 - Configure the i2c1 
 
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_1.png)
 
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_2.png)
-
+- preconfig the Multi_Camera_Adapter board
+```bash
+wget https://raw.githubusercontent.com/ArduCAM/RaspberryPi/master/Multi_Camera_Adapter/preCfg.sh
+```
+```bash
+sudo chmod +x preCfg.sh
+```
+```bash
+sudo ./preCfg.sh
+```
 - Run the below command to init and check the camera
 ```Bash
 sudo ./init_camera.sh
