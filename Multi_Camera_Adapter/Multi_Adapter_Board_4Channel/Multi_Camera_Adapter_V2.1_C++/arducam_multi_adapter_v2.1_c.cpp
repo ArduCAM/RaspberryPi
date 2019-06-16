@@ -94,6 +94,8 @@ int initCamera(VideoCapture &cap){
     // int access(const char *filename, int mode);
     system("i2cset -y 1 0x70 0x00 0x04");
     system("sudo modprobe bcm2835_v4l2");
+	/* For Raspbian 9.9 version*/
+   // system("sudo modprobe uc-bcm2835-v4l2")
     sleep(1);
     if(access("/dev/video0",0)){
         printf("Please check your camera connection,then try again.\n");
