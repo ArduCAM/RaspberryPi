@@ -41,6 +41,11 @@ if __name__ == "__main__":
 	camera.start_preview()
 	#set camera resolution to 640x480(Small resolution for faster speeds.)
 	camera.resolution = (640, 480)
+	print("Waiting for automatic exposure")
+	time.sleep(2)
+	# Turn off auto exposure, auto exposure operation i2C and auto focus operation I2C will conflict
+	camera.exposure_mode = 'off'
+	print("Start focusing")
 	
 	max_index = 10
 	max_value = 0.0
