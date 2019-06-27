@@ -1,7 +1,7 @@
 ## updating
 - Due to the Raspbian GNU/Linux 9.9 (stretch) is not compatible with our Multli Adapter board V2.1, we have updated our board to    support     new firmware.
 ### for the version 9.9 above firmware,you can use our new board.
-
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Cam_Adapter_Board_v2.1.1.jpg)
 
 
 ## Quickly start
