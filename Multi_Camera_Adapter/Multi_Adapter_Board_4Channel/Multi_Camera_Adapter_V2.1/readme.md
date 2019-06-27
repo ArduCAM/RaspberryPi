@@ -30,8 +30,13 @@ sudo ./init_camera.sh
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/check_msg.png)
 
 - Run the below command to start the demo
+- opencv2.0
 ```Bash
 sudo python 4cam_cv2.py
+```
+- opencv3.0
+```Bash
+sudo python 4cam_cv3.py
 ```
 - Operation video demo link
 ```bash
