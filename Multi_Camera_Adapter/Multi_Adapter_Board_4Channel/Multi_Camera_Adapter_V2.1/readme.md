@@ -38,6 +38,7 @@ sudo python 4cam_cv2.py
 ```Bash
 sudo python 4cam_cv3.py
 ```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Camera_Adapter_Board_openCV3.0.png)
 - Operation video demo link
 ```bash
  https://youtu.be/DRIeM5uMy0I
