@@ -1,3 +1,9 @@
+## updating
+- Due to the Raspbian GNU/Linux 9.9 (stretch) is not compatible with our Multli Adapter board V2.1, we have updated our board to    support     new firmware.
+### for the version 9.9 above firmware,you can use our new board.
+
+
+
 ## Quickly start
   - Run the below command to install the PyQt5 module
   ```Bash
@@ -31,3 +37,4 @@ sudo python 4cam_cv2.py
 ```bash
  https://youtu.be/DRIeM5uMy0I
 ```
+
