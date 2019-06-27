@@ -22,8 +22,8 @@ import subprocess
 '''
 Parameter setting
 '''
-width =  320
-height =240
+width  = 240 #320
+height = 320 #240
 fps = 30
 brightness = 50               # min=0   max=100  step=1
 contrast = 0                  # min=-100  max=100  step=1
