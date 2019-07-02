@@ -21,7 +21,14 @@
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_1.png)
 
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/cfg_i2c1_2.png)
-
+- Download the RaspberryPi library 
+```bash
+git clone https://github.com/ArduCAM/RaspberryPi.git
+```
+- Go to RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1 folder
+```Bash
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1
+```
 - Run the below command to init and check the camera
 ```Bash
 sudo ./init_camera.sh
