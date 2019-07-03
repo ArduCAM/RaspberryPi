@@ -41,7 +41,9 @@ Focus Motor     PI
     - Run this demo is very easy , just input the "sudo python Motorized_Focus_Camera_snapshot.py" in the terminal.
  - Autofocus.py 
     - Before running this demo, you have to install Python Dependency libraries.
-    - sudo apt-get install python-opencv 
+    ```Bash
+    sudo apt-get install python-opencv 
+    ```
     - Enable the I2C0 adapter by running below commands
     ```Bash
     chmod +x enable_i2c_vc.sh
