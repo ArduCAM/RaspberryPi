@@ -42,4 +42,12 @@ Focus Motor     PI
  - Autofocus.py 
     - Before running this demo, you have to install Python Dependency libraries.
     - sudo apt-get install python-opencv 
+    - Enable the I2C0 adapter by running below commands
+    ```Bash
+    chmod +x enable_i2c_vc.sh
+    ```
+    ```Bash
+    ./enable_i2c_vc.sh
+    ```
+    -Then click 'y' to allow it reboot.
     - Then run the demo by inputing the "sudo python Autofocus.py" in the terminal.
