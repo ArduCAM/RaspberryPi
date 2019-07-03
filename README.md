@@ -43,5 +43,5 @@ http://www.arducam.com/programmable-motorized-focus-camera-raspberry-pi/
     ```Bash
     ./enable_i2c_vc.sh
     ```
-    -Then click 'y' to allow it reboot.
-    - Then run the demo by inputing the "sudo python Autofocus.py" in the terminal.
+ - Then click 'y' to allow it reboot.
+ - Then run the demo by inputing the "sudo python Autofocus.py" in the terminal.
