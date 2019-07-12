@@ -25,7 +25,7 @@ def runFocus(func):
               dat1 = (value>>8)&0x3f
 	      dat2 = value & 0xf0
               
-              os.system("i2cset -y 1 0x0c %d %d" % (dat1,dat2))
+              os.system("i2cset -y 0 0x0c %d %d" % (dat1,dat2))
            elif event.key==K_DOWN:
 	      print 'DOWN'
 	      if temp_val <12 :
@@ -35,7 +35,7 @@ def runFocus(func):
               value = (temp_val<<4) & 0x3ff0
               dat1 = (value>>8)&0x3f
               dat2 = value & 0xf0
-              os.system("i2cset -y 1 0x0c %d %d" % (dat1,dat2))
+              os.system("i2cset -y 0 0x0c %d %d" % (dat1,dat2))
 
 def runCamera():
     cmd = "sudo raspistill -t 0"
