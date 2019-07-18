@@ -1,11 +1,53 @@
+# Introudction
+This multi-camera adapter board is designed for Raspberry pi ZERO and let your connect two 8MP cameras to Pi Zero.
+Only one of the two cameras can be activated at a time, the are working in alternate ways.
+It can not run two cameras at the same time, but we build a simple software which can run two cameras and make it looks working as the same time.
+But the drawback is the frame rate and resolution will be fairly low, may be useful for surveillance.
+# Prerequisites.
+Before using this board, you should enable the i2c1 firstly.
+![hardware](../../data/cfg_i2c1_1.png)
+![hardware](../../data/cfg_i2c1_2.png)
+## Hardware pin definition
+
+| Pi Zero| Adapter Board |
+| :--- | :---: |
+| SDA1 | SDA | 
+| SCL1 | SCL | 
+| 7    | SEL |
+| 11   | OE  |
+| 3.3V | 3V3 |
+| GND  | GND |
+- User should choose the channel through the i2c bus.
+* Choose the cameraA
+```Bash
+ i2cset -y 1 0x70 0x00 0x01
+```
+* CHoose the cameraB
+```Bash
+ i2cset -y 1 0x70 0x00 0x02
+```
+- User should set the 11 (OE signal) to low to enabe the mipi data output.
+- User should set the 7 (SEL) high and low to choose cut the cameraA and cameraB 
 
 ## Hardware Connection
 ![hardware](../../data/uc444_0.jpg)
 ![hardware](../../data/uc444_1.jpg)
-## Quickly start
 
+## Quickly start
+- Download the Raspberrypi library
+```bash
+git clone https://github.com/ArduCAM/RaspberryPi.git
+```
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/download_code.png)
+- This example demonstrates to run two cameras and make them looks at the same time
+
+* Install the opencv library
 ```Bash
 sudo apt-get install libopencv-dev
+```
+* Compile and run
+```Bash
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel_uc444
 ```
 ```Bash
 make

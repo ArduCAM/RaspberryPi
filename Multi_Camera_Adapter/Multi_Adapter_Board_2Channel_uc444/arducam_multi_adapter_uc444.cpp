@@ -20,14 +20,10 @@ int lastStatus[GPIO_NUM];
 void init(){
 	digitalNum[0] = 7;
 	digitalNum[1] = 11;
-
     wiringPiSetup() ;
-    //   pinMode (0, OUTPUT) ;
 	for(int i = 0 ; i < GPIO_NUM ; ++i){
 		pinMode (digitalNum[i], OUTPUT) ;
-		// pullUpDnControl (digitalNum[i], PUD_UP);
 	}
-
 }
 int width = 320;
 int height = 240;
@@ -39,8 +35,6 @@ void mergeImage(Mat &dst,Mat &src,int index){
     if(dst.empty()){
         dst.create(rows * 1 + offset * 3,cols * 2 + offset * 3,CV_8UC3);
         dst.setTo(Scalar(0xE5,0xE5,0xE5));
-        	// #6495ED
-
     }
     // resize(src, src, Size(cols, rows));
 #ifdef DEBUG_OUTPUT
