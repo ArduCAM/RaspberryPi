@@ -13,3 +13,4 @@ make
 ```Bash
 sudo ./arducam_multi_adapter_uc444
 ```
+![test](../../data/demo.png)
