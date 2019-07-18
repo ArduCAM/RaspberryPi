@@ -40,7 +40,21 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/download_code.png)
 - This example demonstrates to run two cameras and make them looks at the same time
+### Shell version
+- This shell script demonstrates how to take two still images from two cameras in turn. Each camera will preview for 5 seconds
+- take a photo saved to the local file system. Users can directly see the tested pictures. 
+- Run the script
+```bash
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel_uc444/shell
+```
+```bash
+sudo chmod +x pi_cam_uc444.sh
+```
+```bash
+sudo ./pi_cam_uc444.sh
+```
 
+### C++ version
 * Install the opencv library
 ```Bash
 sudo apt-get install libopencv-dev

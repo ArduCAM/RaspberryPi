@@ -220,7 +220,7 @@ int main(int, char **)
         putText(frame,name,Point(0,15),FONT_HERSHEY_SIMPLEX ,0.5,Scalar(0,0,0xFF),2);
         mergeImage(surface,frame,flag - 1);
         imshow("Arducam Multi-Camera DEMO",surface);
-        if (waitKey(1) >= 0)
+        if ((signed char)(waitKey(1)) >= 0)
             break;
 
         ++flag;
