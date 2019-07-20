@@ -45,8 +45,12 @@ extern "C"{
 
 // These #define values are specific to the BCM2835, taken from "BCM2835 ARM Peripherals"
 //#define BCM2835_PERI_BASE        0x20000000
-// Updated to BCM2836 for Raspberry Pi 2.0 Fall 2015 dmh
+
+// Updated to BCM2836 for Raspberry Pi 3.0 Fall 2015 dmh
 #define BCM2835_PERI_BASE        0x3F000000
+
+// Updated to BCM2711 for Raspberry Pi 4.0 Fall 2015 dmh
+#define BCM2835_PERI_BASE        0xFE000000
 
 #define GPIO_BASE               (BCM2835_PERI_BASE + 0x200000)
 #define UART_BASE 			    (BCM2835_PERI_BASE + 0x201000)
