@@ -50,7 +50,7 @@ extern "C"{
 #define BCM2835_PERI_BASE        0x3F000000
 
 // Updated to BCM2711 for Raspberry Pi 4.0 Fall 2015 dmh
-#define BCM2835_PERI_BASE        0xFE000000
+//#define BCM2835_PERI_BASE        0xFE000000
 
 #define GPIO_BASE               (BCM2835_PERI_BASE + 0x200000)
 #define UART_BASE 			    (BCM2835_PERI_BASE + 0x201000)
