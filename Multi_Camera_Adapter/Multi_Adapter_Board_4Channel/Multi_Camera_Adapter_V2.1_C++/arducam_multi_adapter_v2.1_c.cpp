@@ -93,24 +93,20 @@ int main() {
     std::cout << "Testing Camera A..." << std::endl;
     set_camera(1);
     capture("CAMERA_A");
-    std::cout << "Camera A successful." << std::endl;
     #endif
     #ifdef ENABLE_CAMERA_2
     std::cout << "Testing Camera B..." << std::endl;
     set_camera(2);
     capture("CAMERA_B");
-    std::cout << "Camera B successful." << std::endl;
     #endif
     #ifdef ENABLE_CAMERA_3
     std::cout << "Testing Camera C..." << std::endl;
     set_camera(3);
     capture("CAMERA_C");
-    std::cout << "Camera C successful." << std::endl;
     #endif
     #ifdef ENABLE_CAMERA_4
     std::cout << "Testing Camera D..." << std::endl;
     set_camera(4);
     capture("CAMERA_D");
-    std::cout << "Camera D successful." << std::endl;
     #endif
 }
