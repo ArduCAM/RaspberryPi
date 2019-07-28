@@ -1,234 +1,112 @@
-// #include <opencv2/core.hpp>
-// #include <opencv2/videoio.hpp>
-// #include <opencv2/highgui.hpp>
-#include <opencv2/opencv.hpp>
 #include <iostream>
-#include <stdio.h>
-//#include <sys/time.h>
-#include <wiringPi.h>
-#include <sys/time.h>
-#include <time.h>
 #include <unistd.h>
-using namespace cv;
-using namespace std;
 
-typedef struct timeval TIME;
-#define GPIO_NUM 3
-int digitalNum[GPIO_NUM];
-int status[GPIO_NUM];
-int lastStatus[GPIO_NUM];
-void init(){
-	digitalNum[0] = 7;
-	digitalNum[1] = 0;
-	digitalNum[2] = 1;
+#include <string>
+#include <string.h>
 
-    wiringPiSetup() ;
-    //   pinMode (0, OUTPUT) ;
-	for(int i = 0 ; i < GPIO_NUM ; ++i){
-		pinMode (digitalNum[i], OUTPUT) ;
-		// pullUpDnControl (digitalNum[i], PUD_UP);
-	}
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
 
-}
-int width = 320;
-int height = 240;
-void mergeImage(Mat &dst,Mat &src,int index){
-    int offset = 10;
-    int cols = width;
-    int rows = height;
-	
-    if(dst.empty()){
-        dst.create(rows * 2 + offset * 3,cols * 2 + offset * 3,CV_8UC3);
-        dst.setTo(Scalar(0xE5,0xE5,0xE5));
-        	// #6495ED
+// Comment out any cameras that are not available to your device.
+// This will cause set_camera to return a negative number and for them
+// not to be tested by main.
+// This must be done before compiling.
+#define ENABLE_CAMERA_1
+#define ENABLE_CAMERA_1
+#define ENABLE_CAMERA_2
+#define ENABLE_CAMERA_4
 
-    }
-    // resize(src, src, Size(cols, rows));
-#ifdef DEBUG_OUTPUT
-    cout << "dst Width: " << dst.cols << endl;
-    cout << "dst Height: " << dst.rows << endl;
-    cout << "src Width: " << src.cols << endl;
-    cout << "src Height: " << src.rows << endl;
-    cout << "index: " << index << endl;
-    printf("args: %d %d %d %d\n",(index % 2) * cols,(index / 2)*rows,width,height);
-#endif
-    // src.copyTo(dst(Rect((index % 2) * cols + (index % 2) * offset, (index / 2) * rows + (index / 2) * offset, width, height)));
-    src.copyTo(dst(Rect((index % 2) * cols + (index % 2 + 1) * offset, (index / 2) * rows + (index / 2 + 1) * offset, width, height)));
-}
+int setup() {
+    wiringPiSetup();
+    pinMode(7, OUTPUT);
+    pinMode(0, OUTPUT);
 
-TIME currentTimeMillis(){
-    struct timeval start;
-    gettimeofday( &start, NULL );
-    return start;
-}
-
-int brightness = 50;               // min=0   max=100  step=1
-int contrast = 0;                  // min=-100  max=100  step=1
-int saturation = 0;                // min=-100  max=100  step=1
-int _rotate = 0;                    // min=0  max=360  step=90 
-int auto_exposure = 0;             // min=0  max=3 
-int exposure_time_absolute = 1000; // min = 1  max=10000  step=1
-
-void sendCommand(){
-    char command[100];
-    sprintf(command,"v4l2-ctl -d 0 -c brightness=%d",brightness);
-    system(command);
-
-    sprintf(command,"v4l2-ctl -d 0 -c contrast=%d",contrast);
-    system(command);
-
-    sprintf(command,"v4l2-ctl -d 0 -c saturation=%d",saturation);
-    system(command);
-
-    sprintf(command,"v4l2-ctl -d 0 -c rotate=%d",_rotate);
-    system(command);
-
-    sprintf(command,"v4l2-ctl -d 0 -c auto_exposure=%d",auto_exposure);
-    system(command);
+    pinMode(1, OUTPUT);
     
-    sprintf(command,"v4l2-ctl -d 0 -c exposure_time_absolute=%d",exposure_time_absolute);
-    system(command);
-}
-int initCamera(VideoCapture &cap){
+    digitalWrite(1, HIGH);
+    digitalWrite(0, HIGH);
 
-    // int access(const char *filename, int mode);
-    system("i2cset -y 1 0x70 0x00 0x04");
-    system("sudo modprobe bcm2835_v4l2");
-	/* For Raspbian 9.9 version*/
-   // system("sudo modprobe uc-bcm2835-v4l2")
-    sleep(1);
-    if(access("/dev/video0",0)){
-        printf("Please check your camera connection,then try again.\n");
-        exit(0);
+    int extraPins[4] = {3, 4, 13, 6};
+    for (int i = 0 ; i < 4 ; i++ ) {
+        pinMode(extraPins[i], OUTPUT);
+        digitalWrite(extraPins[i], HIGH);
     }
-    char *i2c = "i2cset -y 1 0x70 0x00 0x07";
-    system(i2c);
-    digitalWrite(7,1) ;
-    digitalWrite(0,1) ;
-    digitalWrite(1,0) ;
 
-    // open the default camera using default API
-    cap.open(0);
-    // OR advance usage: select any API backend
-    int deviceID = 0;        // 0 = open default camera
-    int apiID = 0;
-    // int apiID = cv::CAP_ANY; // 0 = autodetect default API
-                             // open selected camera using selected API
-    cap.open(deviceID + apiID);
-    // check if we succeeded
-    if (!cap.isOpened())
-    {
-        cerr << "ERROR! Unable to open camera\n";
-        return -1;
-    }
-    sendCommand();
-    cap.grab();
-    i2c = "i2cset -y 1 0x70 0x00 0x06";
-    system(i2c);
-    digitalWrite(7,0) ;
-    digitalWrite(0,1) ;
-    digitalWrite(1,0) ;
-    sendCommand();
-    cap.grab();
-    sleep(1);
-
-    i2c = "i2cset -y 1 0x70 0x00 0x04";
-    system(i2c);
-    digitalWrite(7,0) ;
-    digitalWrite(0,0) ;
-    digitalWrite(1,1) ;
-    sendCommand();
-    cap.grab();
-    sleep(1);
-
-    i2c = "i2cset -y 1 0x70 0x00 0x05";
-    system(i2c);
-    digitalWrite(7,1) ;
-    digitalWrite(0,0) ;
-    digitalWrite(1,1) ;
-    sendCommand();
-    cap.grab();
-}
-
-int main(int, char **)
-{
-    Mat surface;
-    init();
-    Mat frame;
-    //--- INITIALIZE VIDEOCAPTURE
-    VideoCapture cap;
-    initCamera(cap);
-
-    cap.set(CV_CAP_PROP_FRAME_WIDTH,320);
-    cap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
-    // cap.set(CV_CAP_PROP_FPS,30);
-    //--- GRAB AND WRITE LOOP
-    cout << "Start grabbing" << endl
-         << "Press any key to terminate" << endl;
-
-    long begin_time = time(NULL);
-    int totalFrame = 0;
-    int flag = 2;
-    for (;;)
-    {
-        // wait for a new frame from camera and store it into 'frame'
-
-        // cap.grab();
-        cap.grab();
-        // cap.read(frame);
-        cap.read(frame);
-        TIME start,end;
-        clock_t s1,e1;
-        
-        switch(flag){
-        case 1:     //camera a
-            digitalWrite(7,1) ;
-            digitalWrite(0,0) ;
-            digitalWrite(1,1) ;
-            break;
-        case 2:     //camera b
-            digitalWrite(7,0) ;
-            digitalWrite(0,1) ;
-            digitalWrite(1,0) ;
-            break;
-        case 3:     //camera c
-            digitalWrite(7,1) ;
-            digitalWrite(0,1) ;
-            digitalWrite(1,0) ;
-            break;
-        case 4:     //camera d
-            digitalWrite(7,0) ;
-            digitalWrite(0,0) ;
-            digitalWrite(1,1) ;
-            break;
-        }
-        
-        ++totalFrame;
-        if(time(NULL) - begin_time >= 1){
-            printf("fps %d\n",totalFrame);
-            totalFrame = 0;
-            begin_time = time(NULL);
-        }
-        // check if we succeeded
-        if (frame.empty())
-        {
-            cerr << "ERROR! blank frame grabbed\n";
-            break;
-        }
-        char name[20];
-        sprintf(name,"%c",flag + 64);
-        putText(frame,name,Point(0,15),FONT_HERSHEY_SIMPLEX ,0.5,Scalar(0,0,0xFF),2);
-        mergeImage(surface,frame,flag - 1);
-        imshow("Arducam Multi-Camera DEMO",surface);
-        if ((signed char)(waitKey(1)) >= 0)
-            break;
-
-        ++flag;
-        if(flag == 5){
-            flag = 1;
-        }    
-
-    }
-    // the camera will be deinitialized automatically in VideoCapture destructor
     return 0;
+}
+
+// Set the camera utilizing i2c and GPIO interfaces
+// 1-4 corresponds to Cameras A-D as labelled on multiplexer
+int set_camera(int cam) {
+    if (cam == 1) {
+        #ifdef ENABLE_CAMERA_1
+        system("i2cset -y 1 0x70 0x00 0x04");
+        digitalWrite(7, LOW);
+        digitalWrite(0, LOW);
+        digitalWrite(1, HIGH);
+        #else
+        return -1;
+        #endif
+    } else if (cam == 2) {
+        #ifdef ENABLE_CAMERA_2
+        system("i2cset -y 1 0x70 0x00 0x05");
+        digitalWrite(7, HIGH);
+        digitalWrite(0, LOW);
+        digitalWrite(1, HIGH);
+        #else
+        return -2;
+        #endif
+    } else if (cam == 3) {
+        #ifdef ENABLE_CAMERA_3
+        system("i2cset -y 1 0x70 0x00 0x05");
+        digitalWrite(7, HIGH);
+        digitalWrite(0, LOW);
+        digitalWrite(1, HIGH);
+        #else
+        return -3;
+        #endif
+    } else if (cam == 4) {
+        #ifdef ENABLE_CAMERA_4
+        system("i2cset -y 1 0x70 0x00 0x07");
+        digitalWrite(7, HIGH);
+        digitalWrite(0, HIGH);
+        digitalWrite(1, LOW);
+        #else
+        return -4; // Indicates incorrect parameter 4
+        #endif
+    } else {
+        return -5; // -5 indicates incorrect parameter, none of 1-4
+    }
+
+    return 0;
+}
+
+void capture(std::string name) {
+    std::string command ("raspistill -t 100 -o ");
+    std::string cmd = command + name + ".jpg";
+    system(cmd.c_str());
+}
+
+int main() {
+    setup();
+    #ifdef ENABLE_CAMERA_1
+    std::cout << "Testing Camera A..." << std::endl;
+    set_camera(1);
+    capture("CAMERA_A");
+    #endif
+    #ifdef ENABLE_CAMERA_2
+    std::cout << "Testing Camera B..." << std::endl;
+    set_camera(2);
+    capture("CAMERA_B");
+    #endif
+    #ifdef ENABLE_CAMERA_3
+    std::cout << "Testing Camera C..." << std::endl;
+    set_camera(3);
+    capture("CAMERA_C");
+    #endif
+    #ifdef ENABLE_CAMERA_4
+    std::cout << "Testing Camera D..." << std::endl;
+    set_camera(4);
+    capture("CAMERA_D");
+    #endif
 }

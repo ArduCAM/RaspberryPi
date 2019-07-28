@@ -1,19 +1,10 @@
-CXX         = g++
-CXXFLAGS    = `pkg-config --cflags --libs opencv`  #sudo apt-get install libopencv-dev
-LIBS		= -lwiringPi
-ODIR		= obj
-_OBJ        = arducam_multi_adapter_v2.1_c.o
-OBJ 		= $(patsubst %,$(ODIR)/%,$(_OBJ))
+CC = g++
+CCFLAGS = -Wall -g -std=c++11
 
-$(ODIR)/%.o: %.cpp
-	@mkdir -p $(@D)
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-	
+rebuild: clean camera
 
-arducam_multi_adapter_v2.1: $(OBJ)
-	$(CXX) $^ -o $@ $(CXXFLAGS) $(LIBS)
-
-.PHONY:clean
+camera:
+	$(CC) $(CCFLAGS) -o camera arducam_multi_adapter_v2.1_c.cpp -lwiringPi
 
 clean:
-	rm -rf $(ODIR)/*
+	rm camera
