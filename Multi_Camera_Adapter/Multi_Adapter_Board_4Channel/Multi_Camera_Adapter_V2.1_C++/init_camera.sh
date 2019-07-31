@@ -1,4 +1,4 @@
-\#!/bin/sh
+#!/bin/sh
 echo "----Test i2c1"
 i2cdetect -y 1
 echo "----Configure Adapter Board V2.1"
