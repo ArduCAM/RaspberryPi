@@ -12,8 +12,8 @@
 // not to be tested by main.
 // This must be done before compiling.
 #define ENABLE_CAMERA_1
-#define ENABLE_CAMERA_1
 #define ENABLE_CAMERA_2
+#define ENABLE_CAMERA_3
 #define ENABLE_CAMERA_4
 
 int setup() {
@@ -22,7 +22,7 @@ int setup() {
     pinMode(0, OUTPUT);
 
     pinMode(1, OUTPUT);
-    
+
     digitalWrite(1, HIGH);
     digitalWrite(0, HIGH);
 
