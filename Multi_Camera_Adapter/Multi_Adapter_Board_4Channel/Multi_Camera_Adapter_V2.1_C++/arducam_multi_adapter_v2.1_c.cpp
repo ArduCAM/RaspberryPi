@@ -20,7 +20,6 @@ int setup() {
     wiringPiSetup();
     pinMode(7, OUTPUT);
     pinMode(0, OUTPUT);
-
     pinMode(1, OUTPUT);
 
     digitalWrite(1, HIGH);
