@@ -41,28 +41,28 @@ void manualFocusThread(){
         if(KeyVal == 27){
             KeyVal = get_key_board_from_termios();
             if(KeyVal == 91){
-            KeyVal = get_key_board_from_termios();      
-            switch (KeyVal)
-            {
-                case 65/* up */:
-                focusVal += 10;
-                if(focusVal >= 1024){
-                    focusVal = 1024;
+                KeyVal = get_key_board_from_termios();      
+                switch (KeyVal)
+                {
+                    case 65/* up */:
+                    focusVal += 10;
+                    if(focusVal >= 1024){
+                        focusVal = 1024;
+                    }
+                    setFocus(focusVal);
+                        printf("UP\r\n");
+                    break;
+                    case 66/* down */:
+                    focusVal -= 10;
+                    if(focusVal <= 0){
+                        focusVal = 0;
+                    }
+                    setFocus(focusVal);
+                    printf("DOWN\r\n");
+                    break;
+                    default:
+                    break;
                 }
-                setFocus(focusVal);
-                    printf("UP\r\n");
-                break;
-                case 66/* down */:
-                focusVal -= 10;
-                if(focusVal <= 0){
-                    focusVal = 0;
-                }
-                setFocus(focusVal);
-                printf("DOWN\r\n");
-                break;
-                default:
-                break;
-            }
             }
         }
     }
