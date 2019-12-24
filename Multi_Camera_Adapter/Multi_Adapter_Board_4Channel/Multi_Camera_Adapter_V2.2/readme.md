@@ -25,9 +25,9 @@
 ```bash
 git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
-- Go to RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1 folder
+- Go to RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2 folder
 ```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2
 ```
 - Run the below command to init and check the camera
 ```Bash
