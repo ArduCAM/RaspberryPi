@@ -4,6 +4,18 @@
 ```Bash
 sudo apt-get install wiringpi
 ```
+## Add support for Pi4 B
+- Just a quick post to let you know that you’ll need a new wiringPi for the Raspberry Pi 4B.
+- To upgrade:
+```bash
+cd /tmp
+```
+```bash
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+```
+```bash
+sudo dpkg -i wiringpi-latest.deb
+```
 
 # Make
 ```Bash
