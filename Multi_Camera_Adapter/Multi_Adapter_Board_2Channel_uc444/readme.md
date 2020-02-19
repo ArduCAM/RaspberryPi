@@ -40,6 +40,18 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/data/download_code.png)
 - This example demonstrates to run two cameras and make them looks at the same time
+## Add support for Pi4 B
+- Just a quick post to let you know that you’ll need a new wiringPi for the Raspberry Pi 4B.
+- To upgrade:
+```bash
+cd /tmp
+```
+```bash
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+```
+```bash
+sudo dpkg -i wiringpi-latest.deb
+```
 ### Shell version
 - This shell script demonstrates how to take two still images from two cameras in turn. Each camera will preview for 5 seconds
 - take a photo saved to the local file system. Users can directly see the tested pictures. 
