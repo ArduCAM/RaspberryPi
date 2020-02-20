@@ -145,11 +145,11 @@ int main(int, char **)
         clock_t s1,e1;
         
         switch(flag){
-        case 1:     //camera a
-            digitalWrite(7,0) ;
-            break;
-        case 2:     //camera b
+        case 1:     //camera b
             digitalWrite(7,1) ;
+            break;
+        case 2:     //camera a
+            digitalWrite(7,0) ;
             break;
         }
         
