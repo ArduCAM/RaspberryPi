@@ -20,11 +20,11 @@ Before using this board, you should enable the i2c1 firstly.
 - User should choose the channel through the i2c bus.
 * Choose the cameraA
 ```Bash
- i2cset -y 1 0x70 0x00 0x01
+ sudo i2cset -y 1 0x70 0x00 0x01
 ```
 * CHoose the cameraB
 ```Bash
- i2cset -y 1 0x70 0x00 0x02
+ sudo i2cset -y 1 0x70 0x00 0x02
 ```
 - User should set the 11 (OE signal) to low to enabe the mipi data output.
 - User should set the 7 (SEL) high and low to choose cut the cameraA and cameraB 
