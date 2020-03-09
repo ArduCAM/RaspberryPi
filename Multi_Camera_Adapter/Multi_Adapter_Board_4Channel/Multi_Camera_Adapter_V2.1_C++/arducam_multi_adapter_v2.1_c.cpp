@@ -58,10 +58,10 @@ int set_camera(int cam) {
         #endif
     } else if (cam == 3) {
         #ifdef ENABLE_CAMERA_3
-        system("i2cset -y 1 0x70 0x00 0x05");
-        digitalWrite(7, HIGH);
-        digitalWrite(0, LOW);
-        digitalWrite(1, HIGH);
+        system("i2cset -y 1 0x70 0x00 0x06");
+        digitalWrite(7, LOW);
+        digitalWrite(0, HIGH);
+        digitalWrite(1, LOW);
         #else
         return -3;
         #endif
