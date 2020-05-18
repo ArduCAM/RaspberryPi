@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
   serv_addr.sin_port = htons(portno);
   //creat two thread
   pthread_create(&_readData, NULL, readDataThread, NULL);
+  start_read_data = 1;
  // pthread_create(&_sendData, NULL, sendDataThread, NULL);
   sleep(1);
   /*Add support port reuse*/
@@ -93,10 +94,10 @@ int main(int argc, char *argv[])
     printf("Waitting connection...\r\n");
 
     /* Accept actual connection from the client */
-    newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, (void *) &clilen);
-    if (newsockfd < 0) {
-      printf("error\r\n");
-    }
+   //newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, (void *) &clilen);
+   //if (newsockfd < 0) {
+   //  printf("error\r\n");
+   //}
     printf("connect successfully\r\n");
 
     bzero(&revCmdData, CMD_BUF_SIZE);  // Clear the revCmdData buffer
@@ -128,15 +129,15 @@ void *readDataThread(void *arg) {
     if (start_read_data == 1) {
       singleCapture(CAM_CS1);
 	  
-      sendbuf_cam1 = readbuf;
-      length_cam1 = length;
-      if (sockfd) {
-        write(newsockfd, sendbuf_cam1 , length_cam1);
-      }
-      else {
-        start_read_data = 0;
-        break;
-      }
+    // sendbuf_cam1 = readbuf;
+    // length_cam1 = length;
+    // if (sockfd) {
+    //   write(newsockfd, sendbuf_cam1 , length_cam1);
+    // }
+    // else {
+    //   start_read_data = 0;
+    //   break;
+    // }
 /*
       singleCapture(CAM_CS2);
       sendbuf_cam2 = readbuf;
