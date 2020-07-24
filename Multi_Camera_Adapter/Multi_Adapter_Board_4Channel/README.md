@@ -4,6 +4,10 @@
 ```Bash
 sudo apt-get install wiringpi
 ```
+```Bash
+sudo apt-get install libopencv-dev
+```
+
 ## Add support for Pi4 B
 - Just a quick post to let you know that you’ll need a new wiringPi for the Raspberry Pi 4B.
 - To upgrade:
@@ -16,17 +20,34 @@ wget https://project-downloads.drogon.net/wiringpi-latest.deb
 ```bash
 sudo dpkg -i wiringpi-latest.deb
 ```
-
+# test
+```Bash
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
+```
+```Bash
+sudo chmod +x init_camera.sh
+```
+```Bash
+sudo ./init_camera.sh
+```
 # Make
 ```Bash
-make camera
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
+```
+```Bash
+make 
 ```
 
 # Running your RPiCameras with ArduCam
 Default: enables and tests all four cameras at compile time (comment out ENABLE_CAMERA_X in arducam_multi_adapter_v2.1_c.cpp to disable)
 ```Bash
-./camera
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1_C++/ 
 ```
+```Bash
+ ./previewOpencv
+```
+
+
 
 ## Troubleshoot
 - Can't find video0 
