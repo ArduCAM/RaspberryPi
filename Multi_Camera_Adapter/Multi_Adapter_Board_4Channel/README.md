@@ -46,7 +46,7 @@ cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Ad
 ```Bash
  ./previewOpencv
 ```
-
+![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Camera_Adapter_Board_openCV3.0.png)
 
 
 ## Troubleshoot
