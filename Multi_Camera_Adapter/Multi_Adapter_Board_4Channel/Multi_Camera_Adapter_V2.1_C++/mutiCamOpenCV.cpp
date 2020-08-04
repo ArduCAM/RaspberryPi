@@ -104,15 +104,7 @@ int initCamera(VideoCapture &cap){
     digitalWrite(7,1) ;
     digitalWrite(0,1) ;
     digitalWrite(1,0) ;
-
-    // open the default camera using default API
     cap.open(0);
-    // OR advance usage: select any API backend
-    int deviceID = 0;        // 0 = open default camera
-    int apiID = 0;
-    // int apiID = cv::CAP_ANY; // 0 = autodetect default API
-                             // open selected camera using selected API
-    cap.open(deviceID + apiID);
     // check if we succeeded
     if (!cap.isOpened())
     {
@@ -121,6 +113,8 @@ int initCamera(VideoCapture &cap){
     }
     sendCommand();
     cap.grab();
+    sleep(1);
+    
     i2c = "i2cset -y 1 0x70 0x00 0x06";
     system(i2c);
     digitalWrite(7,0) ;
@@ -146,6 +140,7 @@ int initCamera(VideoCapture &cap){
     digitalWrite(1,1) ;
     sendCommand();
     cap.grab();
+    sleep(1);
 }
 
 int main(int, char **)
@@ -173,7 +168,7 @@ int main(int, char **)
 
         // cap.grab();
         cap.grab();
-        // cap.read(frame);
+        cap.read(frame);
         cap.read(frame);
         TIME start,end;
         clock_t s1,e1;
