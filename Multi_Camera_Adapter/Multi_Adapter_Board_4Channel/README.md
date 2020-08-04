@@ -21,6 +21,10 @@ wget https://project-downloads.drogon.net/wiringpi-latest.deb
 sudo dpkg -i wiringpi-latest.deb
 ```
 # test
+- Download the RaspberryPi library 
+```Bash
+git clone https://github.com/ArduCAM/RaspberryPi.git
+```
 ```Bash
 cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
 ```
