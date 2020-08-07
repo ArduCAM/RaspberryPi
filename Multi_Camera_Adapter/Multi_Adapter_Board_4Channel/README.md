@@ -21,7 +21,9 @@ wget https://project-downloads.drogon.net/wiringpi-latest.deb
 sudo dpkg -i wiringpi-latest.deb
 ```
 # test
+
 - Download the RaspberryPi library 
+
 ```Bash
 git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
@@ -43,9 +45,8 @@ make
 ```
 
 # Running your RPiCameras with ArduCam
-Default: enables and tests all four cameras at compile time (comment out ENABLE_CAMERA_X in arducam_multi_adapter_v2.1_c.cpp to disable)
 ```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.1_C++/ 
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
 ```
 ```Bash
  ./previewOpencv
