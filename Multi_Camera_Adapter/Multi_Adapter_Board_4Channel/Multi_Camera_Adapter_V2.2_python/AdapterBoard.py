@@ -24,8 +24,6 @@ class MultiAdapter:
     width = 320
     height = 240 
     def __init__(self):
-       print("init")
-
        gp.setwarnings(False)
        gp.setmode(gp.BOARD)
        gp.setup(7, gp.OUT)
@@ -68,7 +66,7 @@ class MultiAdapter:
         fontScale              = 1
         fontColor              = (255,255,255)
         lineType               = 1
-        factor  = 30
+        factor  = 20
         black = np.zeros(((self.height+factor)*2, self.width*2, 3), dtype= np.uint8) 
         i = 0
         while True:
