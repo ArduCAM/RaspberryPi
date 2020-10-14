@@ -4,6 +4,7 @@ import cv2 as cv
 import numpy as np
 import time
 class MultiAdapter:
+    camNum = 4
     adapter_info = {   "A":{   "i2c_cmd":"i2cset -y 0 0x70 0x00 0x04",
                                     "gpio_sta":[0,0,1],
                             },
@@ -23,6 +24,7 @@ class MultiAdapter:
     camera = cv.VideoCapture(0) 
     width = 320
     height = 240 
+   
     def __init__(self):
        gp.setwarnings(False)
        gp.setmode(gp.BOARD)
@@ -49,7 +51,7 @@ class MultiAdapter:
         gp.output(12, gpio_sta[2])
 
     def init(self,width,height):
-        for i in range(4):
+        for i in range(self.camNum):
            self.height = height
            self.width = width
            self.choose_channel(chr(65+i)) 
@@ -92,7 +94,7 @@ class MultiAdapter:
                 bottomLeftCornerOfText = (factor+self.width, factor*2+self.height)
                 index = chr(65+i)
             i = i+1
-            if i==4:
+            if i==self.camNum:
                 i = 0
             cv.putText(black,'CAM '+index, bottomLeftCornerOfText, font, fontScale,fontColor,lineType)
             cv.imshow("Arducam Multi Camera Demo",black)
