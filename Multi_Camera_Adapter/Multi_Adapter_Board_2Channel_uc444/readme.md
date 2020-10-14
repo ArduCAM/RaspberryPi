@@ -78,7 +78,16 @@ cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel_uc444
 ```Bash
 make
 ```
+* For the use of remote control terminals, first specify the location of the image display
+```Bash
+export DISPLAY=:0
+```
 ```Bash
 sudo ./arducam_multi_adapter_uc444
 ```
+* For users who directly operate locally
+```Bash
+sudo ./arducam_multi_adapter_uc444
+```
+
 ![test](../../data/demo.png)
