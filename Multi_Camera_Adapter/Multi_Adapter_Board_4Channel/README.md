@@ -48,6 +48,10 @@ make
 ```Bash
 cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
 ```
+* For the use of remote control terminals, first specify the location of the image display
+```Bash
+export DISPLAY=:0
+```
 ```Bash
  ./previewOpencv
 ```

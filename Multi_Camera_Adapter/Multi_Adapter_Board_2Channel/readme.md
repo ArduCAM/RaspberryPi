@@ -51,6 +51,10 @@ sudo apt-get install libopencv-dev
 cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_2Channel/c++/
 
 sudo make
+* For the use of remote control terminals, first specify the location of the image display
+```Bash
+export DISPLAY=:0
+```
 
 sudo ./pi_cam
 ```
