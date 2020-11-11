@@ -1,26 +1,17 @@
 # Motorized_Focus_Camera
 ## Preparation
-```bash
-pip install pygame 
-```
-```bash
-cd RaspberryPi/Motorized_Focus_Camera
-```
-```bash
-chmod +x enable_i2c_vc.sh
-```
-```bash
-./enable_i2c_vc.sh
-```
-```bash
-sudo reboot
-```
 ## Demos Function
  Arducam has release three demos Motorized_Focus_Camera_Preview.py, Motorized_Focus_Camera_Snapshot.py and Autofocus.py 
   - Before running this demo, you have to install Python Dependency libraries.
  ```Bash
  sudo apt-get install python-opencv 
  ```
+```
+git clone https://github.com/ArduCAM/RaspberryPi.git
+```
+```bash
+cd RaspberryPi/Motorized_Focus_Camera
+```
  - Enable the I2C0 adapter by running below commands
  ```Bash
  chmod +x enable_i2c_vc.sh
