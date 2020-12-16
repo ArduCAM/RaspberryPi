@@ -9,7 +9,6 @@ make install
 ```bash 
 make 
 ```
-```
 ```bash 
 ./manualFocus
 ```
