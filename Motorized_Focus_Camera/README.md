@@ -6,19 +6,9 @@
  ```Bash
  sudo apt-get install python-opencv 
  ```
-```
+```Bash
 git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
-```bash
-cd RaspberryPi/Motorized_Focus_Camera
-```
- - Enable the I2C0 adapter by running below commands
- ```Bash
- chmod +x enable_i2c_vc.sh
- ```
- ```Bash
- ./enable_i2c_vc.sh
- ```
  -Then click 'y' to allow it reboot.
 ### Motorized_Focus_Camera_Preview.py
  - This demo supports focusing in preview mode, You can see the focus visually
@@ -31,3 +21,27 @@ cd RaspberryPi/Motorized_Focus_Camera
 ### Autofocus.py 
  - This demo supports auto focusing in preview mode, You can see the focus visually
  - Run the demo by inputing the "sudo python Autofocus.py" in the terminal.
+
+### Usage:
+
+## Python demo
+```bash
+cd RaspberryPi/Motorized_Focus_Camera/python/
+```
+```bash 
+python xxx.py
+```
+## C demo
+
+```bash
+cd RaspberryPi/Motorized_Focus_Camera/C/
+```
+```bash
+make install
+```
+```bash
+make 
+```
+```bash
+./manualFocus
+```

@@ -5,6 +5,7 @@
 #include <termios.h>
 #include <pthread.h>
 #include <signal.h>
+#include "arducam_vcm.h"
 pthread_t manualFocusPthreadID;
 unsigned char flag = 1;
 int get_key_board_from_termios()
@@ -22,13 +23,7 @@ int get_key_board_from_termios()
     return key_value;
 }
 void setFocus(int val){
-char buffer[1024] = { 0 };
-    unsigned char valMSB, valLSB;
-    val = (val<<4) & 0x3ff0;
-    valMSB = (val>>8)&0x3f;
-    valLSB = val & 0xf0;
-    sprintf(buffer,"i2cset -y 0 0x0c %d %d",valMSB,valLSB);
-    system(buffer);
+	vcm_write(val);
 }
 void manualFocusThread(){
    int focusVal  = 0;
@@ -69,7 +64,8 @@ void manualFocusThread(){
 }
 
 int main( void ){
-    int ret = 0;
+   int ret = 0;
+   vcm_init();
    ret = pthread_create(&manualFocusPthreadID, NULL, (void *)manualFocusThread,NULL);
 
    if(ret){
