@@ -3,7 +3,6 @@ import os
 import time
 import sys
 import picamera
-from pynput.keyboard import Listener
 from ctypes import *
 keyboard = CDLL('./lib/libarducam_keyboard.so')
 arducam_vcm =CDLL('./lib/libarducam_vcm.so')
