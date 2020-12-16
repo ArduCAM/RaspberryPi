@@ -3,11 +3,9 @@ import os
 import time
 import sys
 import thread
-#import picamera
 from ctypes import *
 keyboard = CDLL('./lib/libarducam_keyboard.so')
 arducam_vcm =CDLL('./lib/libarducam_vcm.so')
-#camera.capture('Image%d.jpg' %(time.time()))
 UP      = 1
 DOWN    = 2
 SAVE    = 115

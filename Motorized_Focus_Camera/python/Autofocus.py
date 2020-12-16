@@ -2,11 +2,9 @@ import cv2 #sudo apt-get install python-opencv
 import numpy as py
 import os
 import time
-import smbus
 from ctypes import *
 #load arducam shared object file
 arducam_vcm= CDLL('./lib/libarducam_vcm.so')
-bus = smbus.SMBus(0)
 try:
 	import picamera
 	from picamera.array import PiRGBArray
