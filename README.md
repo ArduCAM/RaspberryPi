@@ -20,6 +20,18 @@ http://www.arducam.com/programmable-motorized-focus-camera-raspberry-pi/
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/AutoFocus_diagram.png)
 ### Pi4
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Motorized_Focus_Camera_Pi4.jpg)
+
+- Enable the i2c0 adapter 
+```bash
+cd RaspberryPi/Motorized_Focus_Camera
+```
+```bash
+sudo chmod +x enable_i2c_vc.sh
+```
+```bash
+./enable_i2c_vc.sh
+```
+
 - Demos Function
  - Motorized_Focus_Camera_Preview.py
    - This demo support focusing in preview mode, You can see the focus visually

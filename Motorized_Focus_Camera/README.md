@@ -6,6 +6,14 @@
  ```Bash
  sudo apt-get install python-opencv 
  ```
+```bash
+sudo chmod +x enable_i2c_vc.sh
+```
+```bash
+./enable_i2c_vc.sh
+```
+Press Y to reboot
+
 ```Bash
 git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
