@@ -45,7 +45,7 @@ if __name__ == "__main__":
 	#set camera resolution to 640x480(Small resolution for faster speeds.)
 	camera.resolution = (640, 480)
         time.sleep(0.1)
-        camera.exposure_mode="off"
+        camera.shutter_speed=30000
 	print("Start focusing")
 	
 	max_index = 10
