@@ -5,19 +5,19 @@ import numpy as np
 import time
 class MultiAdapter:
     camNum = 4
-    adapter_info = {   "A":{   "i2c_cmd":"i2cset -y 0 0x70 0x00 0x04",
+    adapter_info = {   "A":{   "i2c_cmd":"i2cset -y 1 0x70 0x00 0x04",
                                     "gpio_sta":[0,0,1],
                             },
                         "B":{
-                                "i2c_cmd":"i2cset -y 0 0x70 0x00 0x05",
+                                "i2c_cmd":"i2cset -y 1 0x70 0x00 0x05",
                                 "gpio_sta":[1,0,1],
                             },
                         "C":{
-                                "i2c_cmd":"i2cset -y 0 0x70 0x00 0x06",
+                                "i2c_cmd":"i2cset -y 1 0x70 0x00 0x06",
                                 "gpio_sta":[0,1,0],
                             },
                         "D":{
-                                "i2c_cmd":"i2cset -y 0 0x70 0x00 0x07",
+                                "i2c_cmd":"i2cset -y 1 0x70 0x00 0x07",
                                 "gpio_sta":[1,1,0],
                             },
                      } 
