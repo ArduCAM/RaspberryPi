@@ -82,7 +82,7 @@ if __name__ == "__main__":
 	#set camera resolution to 2592x1944
   camera.resolution = (1920,1080)
 	#save image to file.
-  camera.capture("test.jpg")
+  camera.capture("test_A.jpg")
   print("max index = %d,max value = %lf" % (max_index,max_value))
   print("Start focusing 2")
   max_index = 10
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 	#set camera resolution to 2592x1944
   camera.resolution = (1920,1080)
 	#save image to file.
-  camera.capture("test.jpg")
+  camera.capture("test_B.jpg")
   print("max index = %d,max value = %lf" % (max_index,max_value))
   
  
