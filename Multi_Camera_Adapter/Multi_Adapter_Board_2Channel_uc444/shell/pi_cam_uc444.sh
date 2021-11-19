@@ -1,13 +1,14 @@
 #!/bin/sh
+raspi-gpio set 4 op
+raspi-gpio set 17 op
 i2cset -y 1 0x70 0x00 0x01
-gpio -g mode 17 out
-gpio -g mode 4  out
-gpio -g write 17 0 #set the gpio17 low
-gpio -g write 4 0 #set the gpio4   low
+raspi-gpio set 17 dl #set the gpio17 low
+raspi-gpio set  4 dl #set the gpio4 low
 echo "Choose camera A"
-raspistill -o camera1.jpg
+libcamera-still -o camera1.jpg
 i2cset -y 1 0x70 0x00 0x02
-gpio -g write 4 1 #set the gpio4 high
+raspi-gpio set 17 dl #set the gpio17 low
+raspi-gpio set  4 dh #set the gpio4 high
 echo "Choose Camera B"
-raspistill -o camera2.jpg
+libcamera-still -o camera2.jpg
 echo "Test OK"
