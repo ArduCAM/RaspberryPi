@@ -2,13 +2,16 @@
 #ifndef BCM_283X_H
 #define BCM_283X_H
 
-// Include statements
 #include <sys/mman.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <time.h>
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 /////////////////////////////////////////////////////////////////////
 // Constants
@@ -43,10 +46,10 @@
 // These #define values are specific to the BCM2835, taken from "BCM2835 ARM Peripherals"
 //#define BCM2835_PERI_BASE        0x20000000
 
-// Updated to BCM2836 for Raspberry Pi 2.0 Fall 2015 dmh
+// Updated to BCM2836 for Raspberry Pi 3.0 Fall 2015 dmh
 #define BCM2835_PERI_BASE        0x3F000000
 
-// Updated to BCM2711 for Raspberry Pi 4 Fall 2019 dmh
+// Updated to BCM2711 for Raspberry Pi 4.0 Fall 2015 dmh
 //#define BCM2835_PERI_BASE        0xFE000000
 
 #define GPIO_BASE               (BCM2835_PERI_BASE + 0x200000)
@@ -68,37 +71,28 @@
 #define SPI_CS_CSPOL2		0x00800000
 #define SPI_CS_CSPOL1		0x00400000
 #define SPI_CS_CSPOL0		0x00200000
-#define SPI_CS_RXF		0x00100000
-#define SPI_CS_RXR		0x00080000
-#define SPI_CS_TXD		0x00040000
-#define SPI_CS_RXD		0x00020000
-#define SPI_CS_DONE		0x00010000
-#define SPI_CS_LEN		0x00002000
-#define SPI_CS_REN		0x00001000
-#define SPI_CS_ADCS		0x00000800
-#define SPI_CS_INTR		0x00000400
-#define SPI_CS_INTD		0x00000200
+#define SPI_CS_RXF		    0x00100000
+#define SPI_CS_RXR		    0x00080000
+#define SPI_CS_TXD		    0x00040000
+#define SPI_CS_RXD		    0x00020000
+#define SPI_CS_DONE		    0x00010000
+#define SPI_CS_LEN		    0x00002000
+#define SPI_CS_REN		    0x00001000
+#define SPI_CS_ADCS		    0x00000800
+#define SPI_CS_INTR		    0x00000400
+#define SPI_CS_INTD		    0x00000200
 #define SPI_CS_DMAEN		0x00000100
-#define SPI_CS_TA		0x00000080
+#define SPI_CS_TA		    0x00000080
 #define SPI_CS_CSPOL		0x00000040
 #define SPI_CS_CLEAR_RX		0x00000020
 #define SPI_CS_CLEAR_TX		0x00000010
-#define SPI_CS_CPOL		0x00000008
-#define SPI_CS_CPHA		0x00000004
+#define SPI_CS_CPOL		    0x00000008
+#define SPI_CS_CPHA		    0x00000004
 #define SPI_CS_CS_10		0x00000002
 #define SPI_CS_CS_01		0x00000001
 
 
-// Pointers that will be memory mapped when pioInit() is called
-volatile unsigned int *gpio; //pointer to base of gpio
-volatile unsigned int *spi;  //pointer to base of spi registers
-volatile unsigned int *pwm;
 
-volatile unsigned int *sys_timer;
-volatile unsigned int *arm_timer; // pointer to base of arm timer registers
-
-volatile unsigned int *uart;
-volatile unsigned int *cm_pwm;
 
 /////////////////////////////////////////////////////////////////////
 // GPIO Registers
@@ -669,45 +663,47 @@ typedef struct
 #define HIGH  1
 #define LOW   0
 
-void pioInit();
+extern void pioInit();
 
-void noInterrupts(void);
-void interrupts(void);
+extern void noInterrupts(void);
+extern void interrupts(void);
 
-void pinMode(int pin, int function);
-void digitalWrite(int pin, int val);
+extern void pinMode(int pin, int function);
+extern void digitalWrite(int pin, int val);
 
-int digitalRead(int pin);
-void pinsMode(int pins[], int numPins, int fxn);
-void digitalWrites(int pins[], int numPins, int val);
-int digitalReads(int pins[], int numPins);
-void delay_us(int micros);
-void delay_ms(int millis);
+extern int digitalRead(int pin);
+extern void pinsMode(int pins[], int numPins, int fxn);
+extern void digitalWrites(int pins[], int numPins, int val);
+extern int digitalReads(int pins[], int numPins);
+extern void delay_us(unsigned int micros);
+extern void delay_ms(unsigned int millis);
 
 /////////////////////////////////////////////////////////////////////
 // SPI Functions
 /////////////////////////////////////////////////////////////////////
-void spiInit(int freq, int settings);
-char spiSendReceive(char send);
-short spiSendReceive16(short send) ;
+extern void spiInit(int freq, int settings);
+extern char spiSendReceive(char send);
+extern short spiSendReceive16(short send) ;
 
 /////////////////////////////////////////////////////////////////////
 // UART Functions
 /////////////////////////////////////////////////////////////////////
 
-void uartInit(int baud);
+extern void uartInit(int baud);
 
-char getCharSerial(void);
-
-
-void putCharSerial(char c);
-
-void pwmInit();
-void setPWM(float freq, float dut);
-
-void analogWrite(int val);
-unsigned long  get_microsecond_timestamp();
+extern char getCharSerial(void);
 
 
+extern void putCharSerial(char c);
+
+extern void pwmInit();
+extern void setPWM(float freq, float dut);
+
+extern void analogWrite(int val);
+extern unsigned long  get_microsecond_timestamp();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
