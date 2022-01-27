@@ -2,6 +2,24 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+
+// Pointers that will be memory mapped when pioInit() is called
+volatile unsigned int *gpio; //pointer to base of gpio
+volatile unsigned int *spi;  //pointer to base of spi registers
+volatile unsigned int *pwm;
+
+volatile unsigned int *sys_timer;
+volatile unsigned int *arm_timer; // pointer to base of arm timer registers
+
+volatile unsigned int *uart;
+volatile unsigned int *cm_pwm;
+
+
 /////////////////////////////////////////////////////////////////////
 // General Functions
 /////////////////////////////////////////////////////////////////////
@@ -215,16 +233,12 @@ unsigned long  get_microsecond_timestamp()
 }
 
 
-void delay_us(int micros) {
+void delay_us(unsigned int micros) {
 	unsigned long nowtime = get_microsecond_timestamp();
 	while((get_microsecond_timestamp() - nowtime)<micros/2){;}
-   // SYS_TIMER_C1 = SYS_TIMER_CLO + micros;   // set the compare register
-    // 1000 clocks per millisecond
-    //SYS_TIMER_CSbits.M1 = 1;                 // reset match flag to 0
-   // while(SYS_TIMER_CSbits.M1 == 0);         // wait until the match flag is set
 }
 
-void delay_ms(int millis) {
+void delay_ms(unsigned int millis) {
     delay_us(millis*1000);                // 1000 microseconds per millisecond
 }
 
@@ -327,5 +341,9 @@ void analogWrite(int val) {
 	setPWM(78125, val/255.0);
 }
 
+
+#ifdef __cplusplus
+}
+#endif
 
 
