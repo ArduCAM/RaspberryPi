@@ -12,7 +12,7 @@ SAVE    = 115
 focus_val = 512;
 step = 10
 def run_camera(name):
-    os.system("raspistill -t 0")
+    os.system("libcamera-still -t 0")
 if __name__ == "__main__":
     thread.start_new_thread(run_camera, ("run_camera",))
     #vcm init
