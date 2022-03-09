@@ -72,7 +72,7 @@ int main( void ){
        printf("pthread create failed");
        return 1;
    }
-    char* runCameraCmd = "raspistill -t 0";
+    char* runCameraCmd = "libcamera-still -t 0";
     system(runCameraCmd);
     flag = 0;
     pthread_join(manualFocusPthreadID,NULL);
