@@ -26,6 +26,23 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
  - This demo supports auto focusing in preview mode, You can see the focus visually
  - Run the demo by inputing the "sudo python Autofocus.py" in the terminal.
 
+
+## Install libcamera
+
+### python 2.7
+
+```bash
+cd libcamera_python
+python -m pip install ./libcamera-1.0.2-cp27-cp27mu-linux_armv7l.whl
+```
+
+### python 3.9
+
+```bash
+cd libcamera_python
+python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
+```
+
 ### Usage:
 
 ## Python demo
