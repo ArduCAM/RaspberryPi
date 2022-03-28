@@ -4,7 +4,9 @@
  Arducam has release three demos Motorized_Focus_Camera_Preview.py, Motorized_Focus_Camera_Snapshot.py and Autofocus.py 
   - Before running this demo, you have to install Python Dependency libraries.
  ```Bash
- sudo apt-get install python-opencv 
+python3 -m pip install opencv-python    
+sudo apt-get install libatlas-base-dev
+python3 -m pip install -U numpy 
  ```
 ```bash
 sudo chmod +x enable_i2c_vc.sh
@@ -21,27 +23,13 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
 ### Motorized_Focus_Camera_Preview.py
  - This demo supports focusing in preview mode, You can see the focus visually
  - Single focus by keyboard up and down
- - Run this demo is very easy , just input the "sudo python Motorized_Focus_Camera_Preview.py" in the terminal.
-### Autofocus.py 
+ - Run this demo is very easy , just input the "python3 Motorized_Focus_Camera_Preview.py" in the terminal.
+### AutofocusTest.py 
  - This demo supports auto focusing in preview mode, You can see the focus visually
- - Run the demo by inputing the "sudo python Autofocus.py" in the terminal.
+ - Run the demo by inputing the "python3 AutofocusTest.py" in the terminal.
 
 
-## Install libcamera
 
-### python 2.7
-
-```bash
-cd libcamera_python
-python -m pip install ./libcamera-1.0.2-cp27-cp27mu-linux_armv7l.whl
-```
-
-### python 3.9
-
-```bash
-cd libcamera_python
-python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
-```
 
 ### Usage:
 
@@ -49,9 +37,21 @@ python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
 ```bash
 cd RaspberryPi/Motorized_Focus_Camera/python/
 ```
+
+* FocuserExample.py Example of manual focus  
 ```bash 
-python xxx.py
+python FocuserExample.py -i 10
 ```
+Screenshot:  
+![Screenshot](res/screenshot.png)  
+
+* AutofocusTest.py Example of autofocus  
+Click the 'F' button to achieve auto focus, click the 'Q' button to exit and save the picture
+
+```bash 
+python3 AutofocusTest.py -i 10
+```
+
 ## C demo
 
 ```bash
