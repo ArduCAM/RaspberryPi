@@ -8,18 +8,19 @@ python3 -m pip install opencv-python
 sudo apt-get install libatlas-base-dev
 python3 -m pip install -U numpy 
  ```
-```bash
-sudo chmod +x enable_i2c_vc.sh
+## Download library
+ ```Bash
+git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
+## Enable i2c
+
 ```bash
+cd /home/pi/RaspberryPi/Motorized_Focus_Camera
+sudo chmod +x enable_i2c_vc.sh
 ./enable_i2c_vc.sh
 ```
 Press Y to reboot
 
-```Bash
-git clone https://github.com/ArduCAM/RaspberryPi.git
-```
- -Then click 'y' to allow it reboot.
 ### Motorized_Focus_Camera_Preview.py
  - This demo supports focusing in preview mode, You can see the focus visually
  - Single focus by keyboard up and down
@@ -33,9 +34,24 @@ git clone https://github.com/ArduCAM/RaspberryPi.git
 
 ### Usage:
 
+
 ## Python demo
 ```bash
 cd RaspberryPi/Motorized_Focus_Camera/python/
+```
+
+## Install libcamera
+
+### Kernel version 5.10.63
+
+```bash
+python -m pip install ./libcamera-1.0.1-cp39-cp39-linux_armv7l.whl
+```
+
+### Kernel version 5.10.93
+
+```bash
+python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
 ```
 
 * FocuserExample.py Example of manual focus  
