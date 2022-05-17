@@ -88,17 +88,22 @@
 #define SPI_CS_CS_10		0x00000002
 #define SPI_CS_CS_01		0x00000001
 
+#if defined(DEFINE_VARS)
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
 
 // Pointers that will be memory mapped when pioInit() is called
-volatile unsigned int *gpio; //pointer to base of gpio
-volatile unsigned int *spi;  //pointer to base of spi registers
-volatile unsigned int *pwm;
+EXTERN volatile unsigned int *gpio; //pointer to base of gpio
+EXTERN volatile unsigned int *spi;  //pointer to base of spi registers
+EXTERN volatile unsigned int *pwm;
 
-volatile unsigned int *sys_timer;
-volatile unsigned int *arm_timer; // pointer to base of arm timer registers
+EXTERN volatile unsigned int *sys_timer;
+EXTERN volatile unsigned int *arm_timer; // pointer to base of arm timer registers
 
-volatile unsigned int *uart;
-volatile unsigned int *cm_pwm;
+EXTERN volatile unsigned int *uart;
+EXTERN volatile unsigned int *cm_pwm;
 
 /////////////////////////////////////////////////////////////////////
 // GPIO Registers

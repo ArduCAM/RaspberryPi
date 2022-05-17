@@ -1,3 +1,4 @@
+#define DEFINE_VARS
 #include "bcm283x_board_driver.h"
 
 #include <stdlib.h>
