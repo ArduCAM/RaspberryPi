@@ -1,3 +1,4 @@
+#define ARDUCAM_C
 #include "ArduCAM.h"
 #include "sccb_bus.h"
 #include "ov2640_regs.h"

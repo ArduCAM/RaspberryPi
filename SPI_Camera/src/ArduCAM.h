@@ -5,20 +5,28 @@
 #define CMD_BUF_SIZE    512
 
 
+#if defined(ARDUCAM_C)
 char readbuf[JPEG_BUF_SIZE];
-
 
 char* sendbuf_cam1 ;
 char* sendbuf_cam2 ;
 char* sendbuf_cam3 ;
 char* sendbuf_cam4 ;
 
-
-
 char revCmdData[CMD_BUF_SIZE];
+#else
+extern char readbuf[JPEG_BUF_SIZE];
+
+extern char* sendbuf_cam1 ;
+extern char* sendbuf_cam2 ;
+extern char* sendbuf_cam3 ;
+extern char* sendbuf_cam4 ;
+
+extern char revCmdData[CMD_BUF_SIZE];
+#endif
 
 //ArduCAM CS define
-#define     CAM_CS1         17
+#define     CAM_CS1         8
 #define     CAM_CS2         23
 #define     CAM_CS3         22
 #define     CAM_CS4         24
