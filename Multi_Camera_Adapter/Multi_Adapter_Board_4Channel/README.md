@@ -4,10 +4,26 @@
 ```Bash
 sudo apt-get install wiringpi
 ```
-```Bash
+<!-- ```Bash
 sudo apt-get install libopencv-dev
+``` -->
+```Bash
+sudo apt remove libcamera0
+sudo apt install ./libcamera-dev-0.0.7-bullseye-armhf.deb
+sudo apt install ./libcamera-apps-0.0.7-bullseye-armhf.deb
+wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh
+chmod +x install_pivariety_pkgs.sh
+./install_pivariety_pkgs.sh -p libcamera_dev
+./install_pivariety_pkgs.sh -p libcamera_apps
+./install_pivariety_pkgs.sh -p imx519_kernel_driver
 ```
-
+```Bash
+sudo apt-get upgrade
+sudo apt install -y python3-kms++
+sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg
+sudo pip3 install numpy --upgrade
+sudo pip3 install picamera2
+```
 ## Add support for Pi4 B
 - Just a quick post to let you know that you’ll need a new wiringPi for the Raspberry Pi 4B.
 - To upgrade:
@@ -28,7 +44,7 @@ sudo dpkg -i wiringpi-latest.deb
 git clone https://github.com/ArduCAM/RaspberryPi.git
 ```
 ```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_python/ 
 ```
 ```Bash
 sudo chmod +x init_camera.sh
@@ -38,7 +54,7 @@ sudo ./init_camera.sh
 ```
 # Make
 ```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_python/ 
 ```
 ```Bash
 make 
@@ -46,14 +62,14 @@ make
 
 # Running your RPiCameras with ArduCam
 ```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_C++/ 
+cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_python/ 
 ```
 * For the use of remote control terminals, first specify the location of the image display
 ```Bash
 export DISPLAY=:0
 ```
 ```Bash
- ./previewOpencv
+ python PiAdapterBoard.py
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Camera_Adapter_Board_openCV3.0.png)
 
