@@ -52,13 +52,6 @@ sudo chmod +x init_camera.sh
 ```Bash
 sudo ./init_camera.sh
 ```
-# Make
-```Bash
-cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Adapter_V2.2_python/ 
-```
-```Bash
-make 
-```
 
 # Running your RPiCameras with ArduCam
 ```Bash
@@ -69,7 +62,7 @@ cd RaspberryPi/Multi_Camera_Adapter/Multi_Adapter_Board_4Channel/Multi_Camera_Ad
 export DISPLAY=:0
 ```
 ```Bash
- python PiAdapterBoard.py
+ python previewOpencv.py
 ```
 ![Alt text](https://github.com/ArduCAM/RaspberryPi/blob/master/data/Multi_Camera_Adapter_Board_openCV3.0.png)
 
