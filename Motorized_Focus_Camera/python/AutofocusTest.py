@@ -28,6 +28,7 @@ def parse_cmdline():
 if __name__ == "__main__":
     args = parse_cmdline()
     camera = Camera()
+    camera.start_preview(False)
     focuser = Focuser(args.i2c_bus)
     focuser.verbose = args.verbose
 
@@ -39,9 +40,10 @@ if __name__ == "__main__":
     frame_count = 0
 
     while not exit_:
-        frame = camera.getFrame(2000)
+        frame = camera.getFrame()
+        img = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
 
-        cv2.imshow("Test", frame)
+        cv2.imshow("Test", img)
         key = cv2.waitKey(1)
         if key == ord('q'):
             exit_ = True
