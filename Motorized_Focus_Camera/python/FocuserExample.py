@@ -174,7 +174,7 @@ def main():
     #open camera
     camera = Camera()
     #open camera preview
-    camera.start_preview()
+    camera.start_preview(True)
     print(args.i2c_bus)
     curses.wrapper(draw_menu, camera, args.i2c_bus)
 
