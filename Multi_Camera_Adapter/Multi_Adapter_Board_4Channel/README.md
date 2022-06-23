@@ -4,22 +4,9 @@
 ```Bash
 sudo apt-get install wiringpi
 ```
-<!-- ```Bash
-sudo apt-get install libopencv-dev
-``` -->
-```Bash
-sudo apt remove libcamera0
-sudo apt install ./libcamera-dev-0.0.7-bullseye-armhf.deb
-sudo apt install ./libcamera-apps-0.0.7-bullseye-armhf.deb
-wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh
-chmod +x install_pivariety_pkgs.sh
-./install_pivariety_pkgs.sh -p libcamera_dev
-./install_pivariety_pkgs.sh -p libcamera_apps
-./install_pivariety_pkgs.sh -p imx519_kernel_driver
-```
 ```Bash
 sudo apt-get upgrade
-sudo apt install -y python3-kms++
+sudo apt install -y python3-kms++ python3-libcamera
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg
 sudo pip3 install numpy --upgrade
 sudo pip3 install picamera2
