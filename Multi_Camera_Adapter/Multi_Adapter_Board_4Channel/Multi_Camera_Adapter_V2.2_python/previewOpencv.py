@@ -1,7 +1,6 @@
 
 from ast import Try
 from PyQt5.QtWidgets import QLabel, QHBoxLayout, QVBoxLayout, QApplication, QWidget
-from cv2 import goodFeaturesToTrack
 from picamera2 import Picamera2
 from PyQt5.QtGui import QImage,QPixmap
 from PyQt5.QtCore import QThread
