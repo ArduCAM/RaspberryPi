@@ -4,9 +4,11 @@
  Arducam has release three demos Motorized_Focus_Camera_Preview.py, Motorized_Focus_Camera_Snapshot.py and Autofocus.py 
   - Before running this demo, you have to install Python Dependency libraries.
  ```Bash
-python3 -m pip install opencv-python    
-sudo apt-get install libatlas-base-dev
-python3 -m pip install -U numpy 
+sudo apt-get upgrade
+sudo apt install -y python3-kms++ python3-libcamera
+sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg
+sudo pip3 install numpy --upgrade
+sudo pip3 install picamera2 pencv-python  
  ```
 ## Download library
  ```Bash
@@ -39,7 +41,7 @@ Press Y to reboot
 ```bash
 cd RaspberryPi/Motorized_Focus_Camera/python/
 ```
-
+<!-- 
 ## Install libcamera
 
 ```bash
@@ -59,7 +61,7 @@ python -m pip install ./libcamera-1.0.1-cp39-cp39-linux_armv7l.whl
 
 ```bash
 python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
-```
+``` -->
 
 * FocuserExample.py Example of manual focus  
 ```bash 
