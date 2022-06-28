@@ -25,7 +25,7 @@ class Camera(object):
         # self.cam.start_preview(Preview.QTGL)
         # self.cam.start()
 
-    def getFrame(self,a_wait: bool = False):
+    def getFrame(self,a_wait: bool = True):
         with self._value_lock:
             return self.cam.capture_array(wait=a_wait)
 
