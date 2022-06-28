@@ -8,7 +8,7 @@ sudo apt-get upgrade
 sudo apt install -y python3-kms++ python3-libcamera
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg
 sudo pip3 install numpy --upgrade
-sudo pip3 install picamera2 pencv-python  
+sudo pip3 install picamera2 opencv-python  
  ```
 ## Download library
  ```Bash
