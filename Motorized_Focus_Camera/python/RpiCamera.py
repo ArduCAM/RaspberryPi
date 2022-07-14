@@ -21,7 +21,7 @@ class Camera(object):
 
     def open_camera(self, width=640, height=360, framerate=30):
         self.cam = Picamera2()
-        self.cam.configure(self.cam.preview_configuration(main={"size":(width, height)},buffer_count=4))
+        self.cam.configure(self.cam.create_preview_configuration(main={"size":(width, height)},buffer_count=4))
         # self.cam.start_preview(Preview.QTGL)
         # self.cam.start()
 
