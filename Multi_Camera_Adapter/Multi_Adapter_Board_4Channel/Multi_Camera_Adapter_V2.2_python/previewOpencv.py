@@ -70,7 +70,7 @@ class WorkThread(QThread):
                     # time.sleep(0.5) 
                 print("init1 "+ item)
                 picam2 = Picamera2()
-                picam2.configure(picam2.still_configuration(main={"size": (320, 240),"format": "BGR888"},buffer_count=2)) 
+                picam2.configure(picam2.create_still_configuration(main={"size": (320, 240),"format": "BGR888"},buffer_count=2)) 
                 picam2.start()
                 time.sleep(2)
                 picam2.capture_array(wait=False)
