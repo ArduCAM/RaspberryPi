@@ -4,6 +4,7 @@
  Arducam has release three demos Motorized_Focus_Camera_Preview.py, Motorized_Focus_Camera_Snapshot.py and Autofocus.py 
   - Before running this demo, you have to install Python Dependency libraries.
  ```Bash
+sudo apt-get update
 sudo apt-get upgrade
 sudo apt install -y python3-kms++ python3-libcamera
 sudo apt install -y python3-pyqt5 python3-prctl libatlas-base-dev ffmpeg
