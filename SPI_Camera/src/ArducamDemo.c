@@ -29,6 +29,9 @@ unsigned int length_cam1;
 //unsigned int length_cam3;
 //unsigned int length_cam4;
 
+extern char readbuf[JPEG_BUF_SIZE];
+char revCmdData[CMD_BUF_SIZE];
+
 
 
 

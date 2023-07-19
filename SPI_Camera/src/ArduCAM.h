@@ -1,25 +1,32 @@
 #ifndef __ARDUCAM_H
 #define __ARDUCAM_H
-#include "bcm283x_board_driver.h"
-#include <stdio.h>
-#include <string.h>
-typedef unsigned char uint8_t; 
-typedef unsigned char byte;
 
 #define JPEG_BUF_SIZE   2*1024*1024 //2M
 #define CMD_BUF_SIZE    512
+
+
+
+
+
+extern char* sendbuf_cam1 ;
+extern char* sendbuf_cam2 ;
+extern char* sendbuf_cam3 ;
+extern char* sendbuf_cam4 ;
+
+
+
+//char revCmdData[CMD_BUF_SIZE];
 
 //ArduCAM CS define
 #define     CAM_CS1         17
 #define     CAM_CS2         23
 #define     CAM_CS3         22
 #define     CAM_CS4         24
-#define     CAM_CS5         5
-#define     CAM_CS6         6
-#define     CAM_CS7         13
-#define     CAM_CS8         19
-#define     sigTrig         18
 
+
+
+
+#include "bcm283x_board_driver.h"
 
 #define OV2640_CHIPID_HIGH 	0x0A
 #define OV2640_CHIPID_LOW 	0x0B
@@ -30,6 +37,10 @@ typedef unsigned char byte;
 #define OV5640_CHIPID_HIGH 0x300a
 #define OV5640_CHIPID_LOW  0x300b
 
+extern unsigned char sensor_model;
+extern unsigned char sensor_addr;
+extern unsigned int length;
+extern unsigned char is_header;
 #define BMP 	    0
 #define JPEG	    1
 #define RAW         2
@@ -336,29 +347,16 @@ struct sensor_reg {
 	unsigned int reg;
 	unsigned int val;
 };
-
-typedef struct  
-{
-    unsigned long  dataLength;
-    uint8_t        pu8ImageData[JPEG_BUF_SIZE];
-    uint8_t cameraID;
-    unsigned int errCount = 0;
-}imageData;
-
-
-
 #endif
-class ArduCAM{
-public:
- ArduCAM( void );
- ArduCAM(byte model ,int CS);
- void InitCAM( void );
-
-void resetFirmware(void );
 
 
-void CS_HIGH(void);
-void CS_LOW(void);
+void ArduCAM_Init(unsigned char model );
+void ArduCAM_CS_init(int CS1, int CS2, int CS3, int CS4);
+void resetFirmware(int CS1, int CS2, int CS3, int CS4);
+
+
+void CS_HIGH(int CS);
+void CS_LOW(int CS);
 
 void OV2640_set_JPEG_size(unsigned char size);
 void OV5642_set_JPEG_size(unsigned char size);
@@ -373,24 +371,24 @@ void OV5642_set_Sharpness(unsigned char Sharpness);
 
 
 
-void flush_fifo( void );
-void start_capture( void);
-void clear_fifo_flag(void);
-unsigned char read_fifo(void);
+void flush_fifo(int CS);
+void start_capture(int CS);
+void clear_fifo_flag(int CS);
+unsigned char read_fifo(int CS);
 	
-unsigned char read_reg(unsigned char addr);
-void write_reg(unsigned char addr, unsigned char data);	
+unsigned char read_reg(unsigned char addr,int CS);
+void write_reg(unsigned char addr, unsigned char data,int CS);	
 	
-unsigned int read_fifo_length();
+unsigned int read_fifo_length(int CS);
 void set_fifo_burst(void);
 	
-void set_bit(unsigned char addr, unsigned char bit);
-void clear_bit(unsigned char addr, unsigned char bit);
-unsigned char get_bit(unsigned char addr, unsigned char bit);
-void set_mode(unsigned char mode);
+void set_bit(unsigned char addr, unsigned char bit,int CS);
+void clear_bit(unsigned char addr, unsigned char bit,int CS);
+unsigned char get_bit(unsigned char addr, unsigned char bit,int CS);
+void set_mode(unsigned char mode,int CS);
  
-unsigned char bus_write(int address, int value);
-unsigned char bus_read(int address);	
+unsigned char bus_write(int address, int value,int CS);
+unsigned char bus_read(int address,int CS);	
 unsigned char read_fifo_burst(void);
 
 
@@ -403,17 +401,11 @@ unsigned char wrSensorReg16_8(int regID, int regDat);
 int  wrSensorRegs16_8(const struct sensor_reg reglist[]);
 unsigned char rdSensorReg16_8(unsigned int regID, unsigned char* regDat);
 int rdSensorRegs16_8(const struct sensor_reg reglist[]);
-imageData* getOneframe(imageData* dataBuf);
-void Arducam_bus_detect(void);
-void Arducam_CS_Init(void);
+void  singleCapture(int CS);
 
-protected:
-    volatile uint8_t *P_CS;
-	uint8_t B_CS;
-	byte m_fmt;
-	byte sensor_model;
-	byte sensor_addr;
-};
-extern unsigned int length;
+
+void Arducam_bus_detect(int CS1,int CS2,int CS3,int CS4);
+
+
 
 #endif
