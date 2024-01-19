@@ -1,4 +1,4 @@
-## Introudction
+## Introduction
 This multi-camera adapter board is designed for Raspberry pi ZERO and let your connect two 8MP cameras to Pi Zero.
 Only one of the two cameras can be activated at a time, the are working in alternate ways.
 It can not run two cameras at the same time, but we build a simple software which can run two cameras and make it looks working as the same time.
