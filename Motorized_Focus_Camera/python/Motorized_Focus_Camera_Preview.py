@@ -2,8 +2,9 @@
 import os
 import time
 import sys
-import thread
+import _thread as thread
 from ctypes import *
+
 keyboard = CDLL('./lib/libarducam_keyboard.so')
 arducam_vcm =CDLL('./lib/libarducam_vcm.so')
 UP      = 1
@@ -11,8 +12,11 @@ DOWN    = 2
 SAVE    = 115
 focus_val = 512;
 step = 10
+
+CAMERA_NUMBER = 0
+
 def run_camera(name):
-    os.system("raspistill -t 0")
+    os.system(f"raspistill -t 0 -cs {CAMERA_NUMBER}")
 if __name__ == "__main__":
     thread.start_new_thread(run_camera, ("run_camera",))
     #vcm init
@@ -22,6 +26,8 @@ if __name__ == "__main__":
    # preview=camera.start_preview()
     #set windows size
    # preview.window=(0,0,800,600)
+
+    arducam_vcm.choose_channel(CAMERA_NUMBER)
     print("Please press up and down to adjust focus.")
     while True:
         keyVal = keyboard.processKeyEvent()
